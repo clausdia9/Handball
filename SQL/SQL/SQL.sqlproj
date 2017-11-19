@@ -58,8 +58,4 @@
   <ItemGroup>
     <Folder Include="Properties" />
   </ItemGroup>
-  <ItemGroup>
-    <Build Include="part1.sql" />
-    <Build Include="part2.sql" />
-  </ItemGroup>
 </Project>
