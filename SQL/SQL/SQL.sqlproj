@@ -61,6 +61,5 @@
   <ItemGroup>
     <Build Include="part1.sql" />
     <Build Include="part2.sql" />
-    <Build Include="part3.sql" />
   </ItemGroup>
 </Project>
