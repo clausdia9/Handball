@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace UMT360.Handball.Models
+namespace Claudias.Handball.Models
 {
-    class User
+    public class User
     {
+        #region Properties
         public Guid UserId
         { get; set; }
 
@@ -17,5 +16,6 @@ namespace UMT360.Handball.Models
 
         public string UserType
         { get; set; }
+        #endregion Properties
     }
 }

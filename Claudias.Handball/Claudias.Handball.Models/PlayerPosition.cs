@@ -1,15 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace UMT360.Handball.Models
+namespace Claudias.Handball.Models
 {
-    class PlayerPosition
+    public class PlayerPosition
     {
+        #region Properties
         public Guid PlayerId
         { get; set; }
 
         public Guid PositionId
         { get; set; }
+        #endregion Properties
     }
 }

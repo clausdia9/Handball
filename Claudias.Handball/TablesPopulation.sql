@@ -38,9 +38,9 @@ SET @PhotoID=NEWID();
 
 
 
-INSERT INTO Photos([PhotoID],[PhotoVarbinary]) VALUES (@PhotoID	,NULL)
---SELECT @PhotoID, BulkColumn 
---FROM OPENROWSET( BULK 'D:\UMT\image1.jpg', SINGLE_BLOB) AS IMAGE
+INSERT INTO Photos([PhotoID],[PhotoVarbinary]) --VALUES (@PhotoID	,NULL)
+SELECT @PhotoID, BulkColumn 
+FROM OPENROWSET( BULK 'D:\UMT\image1.jpg', SINGLE_BLOB) AS IMAGE
 
 INSERT INTO ArticlesPhotos([ArticleID],[PhotoID]) VALUES (@ArticleID,@PhotoID);
 
@@ -71,9 +71,9 @@ SET @ArticleID=NEWID();
 INSERT INTO Articles([ArticleID], [Title], [Author],[Description]) VALUES (@ArticleID, 'Noile echipamente au sosit', 'Alexandru Marin',NULL);
 
 SET @PhotoID=NEWID();
-INSERT INTO Photos([PhotoID],[PhotoVarbinary]) VALUES (@PhotoID,NULL)
---SELECT @PhotoID, BulkColumn 
---FROM OPENROWSET( BULK 'D:\UMT\image2.jpg', SINGLE_BLOB) AS IMAGE
+INSERT INTO Photos([PhotoID],[PhotoVarbinary]) --VALUES (@PhotoID,NULL)
+SELECT @PhotoID, BulkColumn 
+FROM OPENROWSET( BULK 'D:\UMT\image2.jpg', SINGLE_BLOB) AS IMAGE
 
 INSERT INTO ArticlesPhotos([ArticleID],[PhotoID]) VALUES (@ArticleID,@PhotoID);
 
@@ -81,9 +81,9 @@ SET @ArticleID=NEWID();
 INSERT INTO Articles([ArticleID], [Title], [Author],[Description]) VALUES (@ArticleID, 'Echipa castiga clar in deplasare la Podgorica', 'Ioana Achim',NULL);
 
 SET @PhotoID=NEWID();
-INSERT INTO Photos([PhotoID],[PhotoVarbinary]) VALUES (@PhotoID,NULL)
---SELECT @PhotoID, BulkColumn 
---FROM OPENROWSET( BULK 'D:\UMT\image3.jpg', SINGLE_BLOB) AS IMAGE
+INSERT INTO Photos([PhotoID],[PhotoVarbinary]) --VALUES (@PhotoID,NULL)
+SELECT @PhotoID, BulkColumn 
+FROM OPENROWSET( BULK 'D:\UMT\image3.jpg', SINGLE_BLOB) AS IMAGE
 
 
 INSERT INTO ArticlesPhotos([ArticleID],[PhotoID]) VALUES (@ArticleID,@PhotoID);
@@ -91,46 +91,46 @@ INSERT INTO ArticlesPhotos([ArticleID],[PhotoID]) VALUES (@ArticleID,@PhotoID);
 
 
 SET @PhotoID=NEWID();
-INSERT INTO Photos([PhotoID],[PhotoVarbinary]) VALUES (@PhotoID,NULL)
---SELECT @PhotoID, BulkColumn 
---FROM OPENROWSET( BULK 'D:\UMT\image4.jpg', SINGLE_BLOB) AS IMAGE
+INSERT INTO Photos([PhotoID],[PhotoVarbinary]) --VALUES (@PhotoID,NULL)
+SELECT @PhotoID, BulkColumn 
+FROM OPENROWSET( BULK 'D:\UMT\image4.jpg', SINGLE_BLOB) AS IMAGE
 
 SET @PhotoID=NEWID();
-INSERT INTO Photos([PhotoID],[PhotoVarbinary]) VALUES (@PhotoID,NULL)
---SELECT @PhotoID, BulkColumn 
---FROM OPENROWSET( BULK 'D:\UMT\image5.jpg', SINGLE_BLOB) AS IMAGE
+INSERT INTO Photos([PhotoID],[PhotoVarbinary]) --VALUES (@PhotoID,NULL)
+SELECT @PhotoID, BulkColumn 
+FROM OPENROWSET( BULK 'D:\UMT\image5.jpg', SINGLE_BLOB) AS IMAGE
 
 INSERT INTO ArticlesPhotos([ArticleID],[PhotoID]) VALUES (@ArticleID,@PhotoID);
 
 
 SET @PhotoID=NEWID();
-INSERT INTO Photos([PhotoID],[PhotoVarbinary]) VALUES (@PhotoID,NULL)
---SELECT @PhotoID, BulkColumn 
---FROM OPENROWSET( BULK 'D:\UMT\image6.jpg', SINGLE_BLOB) AS IMAGE
+INSERT INTO Photos([PhotoID],[PhotoVarbinary]) --VALUES (@PhotoID,NULL)
+SELECT @PhotoID, BulkColumn 
+FROM OPENROWSET( BULK 'D:\UMT\image6.jpg', SINGLE_BLOB) AS IMAGE
 
 
 INSERT INTO ArticlesPhotos([ArticleID],[PhotoID]) VALUES (@ArticleID,@PhotoID);
 
 
 SET @PhotoID=NEWID();
-INSERT INTO Photos([PhotoID],[PhotoVarbinary]) VALUES (@PhotoID,NULL)
---SELECT @PhotoID, BulkColumn 
---FROM OPENROWSET( BULK 'D:\UMT\image7.jpg', SINGLE_BLOB) AS IMAGE
+INSERT INTO Photos([PhotoID],[PhotoVarbinary]) --VALUES (@PhotoID,NULL)
+SELECT @PhotoID, BulkColumn 
+FROM OPENROWSET( BULK 'D:\UMT\image7.jpg', SINGLE_BLOB) AS IMAGE
 
 SET @PhotoID=NEWID();
-INSERT INTO Photos([PhotoID],[PhotoVarbinary]) VALUES (@PhotoID,NULL)
---SELECT @PhotoID, BulkColumn 
---FROM OPENROWSET( BULK 'D:\UMT\image8.jpg', SINGLE_BLOB) AS IMAGE
+INSERT INTO Photos([PhotoID],[PhotoVarbinary]) --VALUES (@PhotoID,NULL)
+SELECT @PhotoID, BulkColumn 
+FROM OPENROWSET( BULK 'D:\UMT\image8.jpg', SINGLE_BLOB) AS IMAGE
 
 SET @PhotoID=NEWID();
-INSERT INTO Photos([PhotoID],[PhotoVarbinary]) VALUES (@PhotoID,NULL)
---SELECT @PhotoID, BulkColumn 
---FROM OPENROWSET( Bulk 'D:\UMT\image9.jpg', SINGLE_BLOB) AS IMAGE
+INSERT INTO Photos([PhotoID],[PhotoVarbinary]) --VALUES (@PhotoID,NULL)
+SELECT @PhotoID, BulkColumn 
+FROM OPENROWSET( Bulk 'D:\UMT\image9.jpg', SINGLE_BLOB) AS IMAGE
 
 SET @PhotoID=NEWID();
-INSERT INTO Photos([PhotoID],[PhotoVarbinary]) VALUES (@PhotoID,NULL)
---SELECT @PhotoID, BulkColumn 
---FROM OPENROWSET( BULK 'D:\UMT\image10.jpg', SINGLE_BLOB) AS IMAGE
+INSERT INTO Photos([PhotoID],[PhotoVarbinary]) --VALUES (@PhotoID,NULL)
+SELECT @PhotoID, BulkColumn 
+FROM OPENROWSET( BULK 'D:\UMT\image10.jpg', SINGLE_BLOB) AS IMAGE
 
 
 DECLARE @PlayerID uniqueidentifier
@@ -139,9 +139,9 @@ DECLARE @PlayerID uniqueidentifier
 DECLARE @PositionID uniqueidentifier
 
 SET @PhotoID=NEWID();
-INSERT INTO Photos([PhotoID],[PhotoVarbinary]) VALUES (@PhotoID,NULL)
---SELECT @PhotoID, BulkColumn 
---FROM OPENROWSET( BULK 'D:\UMT\neagu.jpg', SINGLE_BLOB) AS IMAGE
+INSERT INTO Photos([PhotoID],[PhotoVarbinary]) --VALUES (@PhotoID,NULL)
+SELECT @PhotoID, BulkColumn 
+FROM OPENROWSET( BULK 'D:\UMT\neagu.jpg', SINGLE_BLOB) AS IMAGE
 
 
 SET @PlayerID=NEWID();
@@ -158,9 +158,9 @@ INSERT INTO PlayersPositions([PlayerID],[PositionID]) VALUES (@PlayerID,@Positio
 
 
 SET @PhotoID=NEWID();
-INSERT INTO Photos([PhotoID],[PhotoVarbinary]) VALUES (@PhotoID,NULL)
---SELECT @PhotoID, BulkColumn 
---FROM OPENROWSET( BULK 'D:\UMT\mork.jpg', SINGLE_BLOB) AS IMAGE
+INSERT INTO Photos([PhotoID],[PhotoVarbinary]) --VALUES (@PhotoID,NULL)
+SELECT @PhotoID, BulkColumn 
+FROM OPENROWSET( BULK 'D:\UMT\mork.jpg', SINGLE_BLOB) AS IMAGE
 
 
 SET @PlayerID=NEWID();
@@ -175,9 +175,9 @@ INSERT INTO PlayersPositions([PlayerID],[PositionID]) VALUES (@PlayerID,@Positio
 
 
 SET @PhotoID=NEWID();
-INSERT INTO Photos([PhotoID],[PhotoVarbinary]) VALUES (@PhotoID,NULL)
---SELECT @PhotoID, BulkColumn 
---FROM OPENROWSET( BULK 'D:\UMT\loke.jpg', SINGLE_BLOB) AS IMAGE
+INSERT INTO Photos([PhotoID],[PhotoVarbinary]) --VALUES (@PhotoID,NULL)
+SELECT @PhotoID, BulkColumn 
+FROM OPENROWSET( BULK 'D:\UMT\loke.jpg', SINGLE_BLOB) AS IMAGE
 
 
 SET @PlayerID=NEWID();
@@ -193,9 +193,9 @@ INSERT INTO PlayersPositions([PlayerID],[PositionID]) VALUES (@PlayerID,@Positio
 
 
 SET @PhotoID=NEWID();
-INSERT INTO Photos([PhotoID],[PhotoVarbinary]) VALUES (@PhotoID,NULL)
---SELECT @PhotoID, BulkColumn 
---FROM OPENROWSET( BULK 'D:\UMT\ardean.jpg', SINGLE_BLOB) AS IMAGE
+INSERT INTO Photos([PhotoID],[PhotoVarbinary]) --VALUES (@PhotoID,NULL)
+SELECT @PhotoID, BulkColumn 
+FROM OPENROWSET( BULK 'D:\UMT\ardean.jpg', SINGLE_BLOB) AS IMAGE
 
 
 SET @PlayerID=NEWID();
@@ -212,9 +212,9 @@ INSERT INTO PlayersPositions([PlayerID],[PositionID]) VALUES (@PlayerID,@Positio
 
 
 SET @PhotoID=NEWID();
-INSERT INTO Photos([PhotoID],[PhotoVarbinary]) VALUES (@PhotoID,NULL)
---SELECT @PhotoID, BulkColumn 
---FROM OPENROWSET( BULK 'D:\UMT\varzaru.jpg', SINGLE_BLOB) AS IMAGE
+INSERT INTO Photos([PhotoID],[PhotoVarbinary]) --VALUES (@PhotoID,NULL)
+SELECT @PhotoID, BulkColumn 
+FROM OPENROWSET( BULK 'D:\UMT\varzaru.jpg', SINGLE_BLOB) AS IMAGE
 
 SET @PlayerID=NEWID();
 INSERT INTO Players ([PlayerID], [PlayerName], [Goals], [BirthDay]) VALUES ( @PlayerID, 'Cristina Varzaru', 16, '1980-06-26')
@@ -223,9 +223,9 @@ INSERT INTO PlayersPhotos ([PlayerID],[PhotoID])  VALUES (@PlayerID,@PhotoID);
 
 
 SET @PhotoID=NEWID();
-INSERT INTO Photos([PhotoID],[PhotoVarbinary]) VALUES (@PhotoID,NULL)
---SELECT @PhotoID, BulkColumn 
---FROM OPENROWSET( BULK 'D:\UMT\gullden.jpg', SINGLE_BLOB) AS IMAGE
+INSERT INTO Photos([PhotoID],[PhotoVarbinary]) --VALUES (@PhotoID,NULL)
+SELECT @PhotoID, BulkColumn 
+FROM OPENROWSET( BULK 'D:\UMT\gullden.jpg', SINGLE_BLOB) AS IMAGE
 
 
 SET @PlayerID=NEWID();
@@ -236,9 +236,9 @@ INSERT INTO PlayersPhotos ([PlayerID],[PhotoID])  VALUES (@PlayerID,@PhotoID);
 
 
 SET @PhotoID=NEWID();
-INSERT INTO Photos([PhotoID],[PhotoVarbinary]) VALUES (@PhotoID,NULL)
---SELECT @PhotoID, BulkColumn 
---FROM OPENROWSET( BULK 'D:\UMT\dumanska.jpg', SINGLE_BLOB) AS IMAGE
+INSERT INTO Photos([PhotoID],[PhotoVarbinary]) --VALUES (@PhotoID,NULL)
+SELECT @PhotoID, BulkColumn 
+FROM OPENROWSET( BULK 'D:\UMT\dumanska.jpg', SINGLE_BLOB) AS IMAGE
 
 SET @PlayerID=NEWID();
 INSERT INTO Players ([PlayerID], [PlayerName], [Goals], [BirthDay]) VALUES( @PlayerID, 'Iulia Dumanska', 1, '1996-05-05')

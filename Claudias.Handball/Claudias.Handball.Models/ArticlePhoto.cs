@@ -1,15 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace UMT360.Handball.Models
+namespace Claudias.Handball.Models
 {
-    class ArticlePhoto
+    public class ArticlePhoto
     {
+        #region Properties
         public Guid ArticleId
         { get; set; }
 
         public Guid PhotoId
         { get; set; }
+        #endregion Properties
     }
 }

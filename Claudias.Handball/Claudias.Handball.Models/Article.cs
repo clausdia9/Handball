@@ -1,9 +1,10 @@
 ﻿using System;
 
-namespace UMT360.Handball.Models
+namespace Claudias.Handball.Models
 {
     public class Article
     {
+        #region Properties
         public Guid ArticleId
         { get; set; }
 
@@ -15,5 +16,7 @@ namespace UMT360.Handball.Models
 
         public string Description
         { get; set; }
+        #endregion Properties
     }
 }
+

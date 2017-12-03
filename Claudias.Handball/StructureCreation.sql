@@ -88,7 +88,7 @@ CREATE PROCEDURE [dbo].[Articles_Create]
 )
 	AS
 	 BEGIN
-		INSERT INTO Articles([ArticleID],[Title],[Author]) VALUES(@ArticleID, @Title, @Author)
+		INSERT INTO Articles([ArticleID],[Title],[Author],[Description]) VALUES(@ArticleID, @Title, @Author,@Description)
 	END
 GO
 

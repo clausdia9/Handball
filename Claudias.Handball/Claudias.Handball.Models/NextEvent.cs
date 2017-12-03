@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace UMT360.Handball.Models
+namespace Claudias.Handball.Models
 {
-    class NextEvent
+    public class NextEvent
     {
+        #region Properties
         public Guid EventId
         { get; set; }
 
@@ -17,5 +16,6 @@ namespace UMT360.Handball.Models
 
         public DateTime Date
         { get; set; }
+        #endregion Properties
     }
 }
