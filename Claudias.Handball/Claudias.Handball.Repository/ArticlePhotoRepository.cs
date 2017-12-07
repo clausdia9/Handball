@@ -1,74 +1,32 @@
 ﻿using Claudias.Handball.Models;
 using System;
 using System.Data.SqlClient;
+using Claudias.Handball.Repository.Core;
 
 namespace Claudias.Handball.Repository
 {
-    public class ArticlePhotoRepository
+    public class ArticlePhotoRepository:BaseRepository<ArticlePhoto>
     {
 
         #region Methods
-        public void Insert(ArticlePhoto articlePhoto)
+       
+        
+
+        public void Insert(SqlParameter[] parameters = default(SqlParameter[]))
         {
-            string connectionString = "Server=ADMIN-PC\\SQLEXPRESS;Database=Handball;Trusted_Connection=True;";
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-
-                    using (SqlCommand command = new SqlCommand())
-                    {
-                        command.Connection = connection;
-                        command.CommandText = "dbo.ArticlesPhotos_Create";
-                        command.CommandType = System.Data.CommandType.StoredProcedure;
-
-                        command.Parameters.Add(new SqlParameter("@ArticleID", articlePhoto.ArticleId));
-                        command.Parameters.Add(new SqlParameter("@PhotoID", articlePhoto.PhotoId));
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                    }
-                }
-                catch (SqlException sqlEx)
-                {
-                    Console.WriteLine("There was an SQL error: {0}", sqlEx.ToString());
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("There was an error: {0}", ex.ToString());
-                }
-            }
+            Insert("dbo.ArticlesPhotos_Create", parameters);
         }
-      
-        public void Delete(ArticlePhoto articlePhoto)
+        
+        public void Delete(SqlParameter parameter)
         {
-            string connectionString = "Server=ADMIN-PC\\SQLEXPRESS;Database=Handball;Trusted_Connection=True;";
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-
-                    using (SqlCommand command = new SqlCommand())
-                    {
-                        command.Connection = connection;
-                        command.CommandText = "dbo.ArticlesPhotos_Delete";
-                        command.CommandType = System.Data.CommandType.StoredProcedure;
-                        command.Parameters.Add(new SqlParameter("@ArticleID", articlePhoto.ArticleId));
-                        command.Parameters.Add(new SqlParameter("@PhotoID", articlePhoto.PhotoId));
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                    }
-                }
-                catch (SqlException sqlEx)
-                {
-                    Console.WriteLine("There was an SQL error: {0}", sqlEx.ToString());
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("There was an error: {0}", ex.ToString());
-                }
-            }
+            Delete("dbo.ArticlesPhotos_Delete", parameter);
+        }
+        protected override ArticlePhoto GetModelFromReader(SqlDataReader reader)
+        {
+            ArticlePhoto articlePhoto = new ArticlePhoto();
+            articlePhoto.ArticleId= reader.GetGuid(reader.GetOrdinal("ArticleID"));
+            articlePhoto.PhotoId= reader.GetGuid(reader.GetOrdinal("PhotoID"));
+            return articlePhoto;
         }
         #endregion Methods
     }

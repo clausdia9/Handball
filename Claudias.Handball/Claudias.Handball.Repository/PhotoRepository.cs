@@ -1,183 +1,44 @@
 ﻿using Claudias.Handball.Models;
+using Claudias.Handball.Repository.Core;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
 namespace Claudias.Handball.Repository
 {
-    public class PhotoRepository
+    public class PhotoRepository:BaseRepository<Photo>
     {
 
         #region Methods
         public List<Photo> ReadAll()
         {
-            List<Photo> photos = new List<Photo>();
-            string connectionString = "Server=ADMIN-PC\\SQLEXPRESS;Database=Handball;Trusted_Connection=True";
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    using (SqlCommand command = new SqlCommand())
-                    {
-                        command.Connection = connection;
-                        command.CommandText = "dbo.Photos_ReadAll";
-                        command.CommandType = System.Data.CommandType.StoredProcedure;
-
-                        connection.Open();
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                Photo photo = new Photo();
-                                photo.PhotoId = reader.GetGuid(reader.GetOrdinal("PhotoID"));
-                                photo.PhotoVarbinary =(byte[]) reader["PhotoVarbinary"];
-                                photos.Add(photo);
-                            }
-                        }
-                    }
-                }
-                catch (SqlException sqlEx)
-                {
-                    Console.WriteLine("There was an SQL error: {0}", sqlEx.ToString());
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("There was an error: {0}", ex.ToString());
-                }
-
-            }
-
-            return photos;
+            return ReadAll("dbo.Photos_ReadAll");
         }
-        public Photo ReadById(Guid photoId)
+        public List<Photo> ReadById(SqlParameter parameter)
         {
-            string connectionString = "Server=ADMIN-PC\\SQLEXPRESS;Database=Handball;Trusted_Connection=True;";
-            Photo photo1 = new Photo();
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-
-                    using (SqlCommand command = new SqlCommand())
-                    {
-                        command.Connection = connection;
-                        command.CommandText = "dbo.Photos_ReadById";
-                        command.CommandType = System.Data.CommandType.StoredProcedure;
-                        command.Parameters.Add(new SqlParameter("@PhotoID", photoId));
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            reader.Read();
-                            photo1.PhotoId = reader.GetGuid(reader.GetOrdinal("PhotoID"));
-                            photo1.PhotoVarbinary = (byte[])reader["PhotoVarbinary"];
-                        }
-                    }
-
-                }
-                catch (SqlException sqlEx)
-                {
-                    Console.WriteLine("There was an SQL error: {0}", sqlEx.ToString());
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("There was an error: {0}", ex.ToString());
-                }
-                return photo1;
-            }
-
-
+            return ReadById("dbo.Photos_ReadById", parameter);
         }
-        public void Insert(Photo photo)
+
+        public void Insert(SqlParameter[] parameters = default(SqlParameter[]))
         {
-            string connectionString = "Server=ADMIN-PC\\SQLEXPRESS;Database=Handball;Trusted_Connection=True;";
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-
-                    using (SqlCommand command = new SqlCommand())
-                    {
-
-                        command.Connection = connection;
-                        command.CommandText = "dbo.Photos_Create";
-                        command.CommandType = System.Data.CommandType.StoredProcedure;
-                        command.Parameters.Add(new SqlParameter("@PhotoID", photo.PhotoId));
-                        command.Parameters.Add(new SqlParameter("@PhotoVarbinary", photo.PhotoVarbinary));
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                    }
-                }
-                catch (SqlException sqlEx)
-                {
-                    Console.WriteLine("There was an SQL error: {0}", sqlEx.ToString());
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("There was an error: {0}", ex.ToString());
-                }
-            }
+            Insert("dbo.Photos_Create", parameters);
         }
-        public void Update(Photo photo)
+        public void Update(SqlParameter[] parameters = default(SqlParameter[]))
         {
-            string connectionString = "Server=ADMIN-PC\\SQLEXPRESS;Database=Handball;Trusted_Connection=True;";
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-
-                    using (SqlCommand command = new SqlCommand())
-                    {
-                        command.Connection = connection;
-                        command.CommandText = "dbo.Photos_Update";
-                        command.CommandType = System.Data.CommandType.StoredProcedure;
-                        command.Parameters.Add(new SqlParameter("@PhotoID", photo.PhotoId));
-                        command.Parameters.Add(new SqlParameter("@PhotoVarbinary", photo.PhotoVarbinary));
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                    }
-                }
-                catch (SqlException sqlEx)
-                {
-                    Console.WriteLine("There was an SQL error: {0}", sqlEx.ToString());
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("There was an error: {0}", ex.ToString());
-                }
-            }
+            Update("dbo.Photos_Update", parameters);
         }
-        public void Delete(Photo photo)
+        public void Delete(SqlParameter parameter)
         {
-            string connectionString = "Server=ADMIN-PC\\SQLEXPRESS;Database=Handball;Trusted_Connection=True;";
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-
-                    using (SqlCommand command = new SqlCommand())
-                    {
-                        command.Connection = connection;
-                        command.CommandText = "dbo.Photos_Delete";
-                        command.CommandType = System.Data.CommandType.StoredProcedure;
-                        command.Parameters.Add(new SqlParameter("@PhotoID", photo.PhotoId));
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                    }
-                }
-                catch (SqlException sqlEx)
-                {
-                    Console.WriteLine("There was an SQL error: {0}", sqlEx.ToString());
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("There was an error: {0}", ex.ToString());
-                }
-            }
+            Delete("dbo.Photos_Delete", parameter);
         }
-        #endregion Methods
+        protected override Photo GetModelFromReader (SqlDataReader reader)
+        {
+            Photo photo = new Photo();
+            photo.PhotoId = reader.GetGuid(reader.GetOrdinal("PhotoID"));
+            photo.PhotoVarbinary = (byte[])reader["PhotoVarbinary"];
+            return photo;
+
+        }
+        #endregion
     }
 }

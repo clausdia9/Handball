@@ -1,61 +1,70 @@
 ﻿using Claudias.Handball.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 
-namespace Claudias.Handball.Repository
+namespace Claudias.Handball.Repository.Core
 {
-    public class PlayerRepository
+    public abstract class BaseRepository<TModel>
     {
+        #region Members
+        protected static string _connectionString = GetConnectionString();
+        #endregion
 
         #region Methods
-        public List<Player> ReadAll()
+        private static string GetConnectionString()
         {
-            List<Player> players = new List<Player>();
-            string connectionString = "Server=ADMIN-PC\\SQLEXPRESS;Database=Handball;Trusted_Connection=True";
-            using (SqlConnection connection = new SqlConnection(connectionString))
+           
+            ConnectionStringSettings connectionStringSettings =ConfigurationManager.ConnectionStrings["Handball"];
+              if (connectionStringSettings == null)
+            {
+              throw new ArgumentNullException("No connection string defined in the configuration file!");
+            }
+            return connectionStringSettings.ConnectionString;
+            
+        }
+
+        public List<TModel> ReadAll(string storedProcedureName, SqlParameter[] parameters = default(SqlParameter[]))
+        {
+            List<TModel> result = new List<TModel>();
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 try
                 {
                     using (SqlCommand command = new SqlCommand())
                     {
+                        
                         command.Connection = connection;
-                        command.CommandText = "dbo.Players_ReadAll";
+                        command.CommandText = storedProcedureName;
                         command.CommandType = System.Data.CommandType.StoredProcedure;
+                        if (parameters != null)
+                           command.Parameters.AddRange(parameters);
 
                         connection.Open();
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             while (reader.Read())
                             {
-                                Player player = new Player();
-                                player.PlayerId = reader.GetGuid(reader.GetOrdinal("PlayerID"));
-                                player.PlayerName = reader.GetString(reader.GetOrdinal("PlayerName"));
-                                player.Goals = reader.GetInt32(reader.GetOrdinal("Goals"));
-                                player.BirthDay = reader.GetDateTime(reader.GetOrdinal("BirthDay"));
-                                players.Add(player);
+                                result.Add(GetModelFromReader(reader));
                             }
                         }
                     }
-                }
-                catch (SqlException sqlEx)
-                {
-                    Console.WriteLine("There was an SQL error: {0}", sqlEx.ToString());
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine("There was an error: {0}", ex.ToString());
                 }
-
             }
 
-            return players;
+            return result;
         }
-        public Player ReadById(Guid playerId)
+
+        public List<TModel> ReadById(string storedProcedureName, SqlParameter parameter)
         {
-            string connectionString = "Server=ADMIN-PC\\SQLEXPRESS;Database=Handball;Trusted_Connection=True;";
-            Player player1 = new Player();
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            List<TModel> result = new List<TModel>();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 try
                 {
@@ -63,18 +72,18 @@ namespace Claudias.Handball.Repository
                     using (SqlCommand command = new SqlCommand())
                     {
                         command.Connection = connection;
-                        command.CommandText = "dbo.Players_ReadById";
+                        command.CommandText = storedProcedureName;
                         command.CommandType = System.Data.CommandType.StoredProcedure;
-                        command.Parameters.Add(new SqlParameter("@PlayerID", playerId));
+
+                        
+                            command.Parameters.Add(parameter);
+
                         connection.Open();
                         command.ExecuteNonQuery();
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             reader.Read();
-                            player1.PlayerId= reader.GetGuid(reader.GetOrdinal("PlayerID"));
-                            player1.PlayerName= reader.GetString(reader.GetOrdinal("PlayerName"));
-                            player1.Goals = reader.GetInt32(reader.GetOrdinal("Goals"));
-                            player1.BirthDay = reader.GetDateTime(reader.GetOrdinal("BirthDay"));
+                             result.Add(GetModelFromReader(reader));
                         }
                     }
 
@@ -87,16 +96,14 @@ namespace Claudias.Handball.Repository
                 {
                     Console.WriteLine("There was an error: {0}", ex.ToString());
                 }
-                return player1;
+                return result;
+
             }
-
-
         }
-        public void Insert(Player player)
-        {
-            string connectionString = "Server=ADMIN-PC\\SQLEXPRESS;Database=Handball;Trusted_Connection=True;";
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+        public void Insert(string storedProcedureName, SqlParameter[] parameters = default(SqlParameter[]))
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 try
                 {
@@ -105,12 +112,9 @@ namespace Claudias.Handball.Repository
                     {
 
                         command.Connection = connection;
-                        command.CommandText = "dbo.Players_Create";
+                        command.CommandText =storedProcedureName;
                         command.CommandType = System.Data.CommandType.StoredProcedure;
-                        command.Parameters.Add(new SqlParameter("@PlayerID", player.PlayerId));
-                        command.Parameters.Add(new SqlParameter("@PlayerName", player.PlayerName));
-                        command.Parameters.Add(new SqlParameter("@Goals", player.Goals));
-                        command.Parameters.Add(new SqlParameter("@BirthDay", player.BirthDay));
+                        command.Parameters.AddRange(parameters);
                         connection.Open();
                         command.ExecuteNonQuery();
                     }
@@ -125,11 +129,10 @@ namespace Claudias.Handball.Repository
                 }
             }
         }
-        public void Update(Player player)
-        {
-            string connectionString = "Server=ADMIN-PC\\SQLEXPRESS;Database=Handball;Trusted_Connection=True;";
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+        public void Update(string storedProcedureName, SqlParameter[] parameters = default(SqlParameter[]))
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 try
                 {
@@ -137,12 +140,9 @@ namespace Claudias.Handball.Repository
                     using (SqlCommand command = new SqlCommand())
                     {
                         command.Connection = connection;
-                        command.CommandText = "dbo.Players_Update";
+                        command.CommandText = storedProcedureName;
                         command.CommandType = System.Data.CommandType.StoredProcedure;
-                        command.Parameters.Add(new SqlParameter("@PlayerID", player.PlayerId));
-                        command.Parameters.Add(new SqlParameter("@PlayerName", player.PlayerName));
-                        command.Parameters.Add(new SqlParameter("@Goals", player.Goals));
-                        command.Parameters.Add(new SqlParameter("@BirthDay", player.BirthDay));
+                        command.Parameters.AddRange(parameters);
                         connection.Open();
                         command.ExecuteNonQuery();
                     }
@@ -157,11 +157,9 @@ namespace Claudias.Handball.Repository
                 }
             }
         }
-        public void Delete(Guid playerId)
+        public void Delete(string storedProcedureName, SqlParameter parameter)
         {
-            string connectionString = "Server=ADMIN-PC\\SQLEXPRESS;Database=Handball;Trusted_Connection=True;";
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 try
                 {
@@ -169,9 +167,9 @@ namespace Claudias.Handball.Repository
                     using (SqlCommand command = new SqlCommand())
                     {
                         command.Connection = connection;
-                        command.CommandText = "dbo.Players_Delete";
+                        command.CommandText = storedProcedureName;
                         command.CommandType = System.Data.CommandType.StoredProcedure;
-                        command.Parameters.Add(new SqlParameter("@PlayerID", playerId));
+                        command.Parameters.Add(parameter);
                         connection.Open();
                         command.ExecuteNonQuery();
                     }
@@ -186,6 +184,8 @@ namespace Claudias.Handball.Repository
                 }
             }
         }
-        #endregion Methods
+
+        protected abstract TModel GetModelFromReader(SqlDataReader reader);
+        #endregion
     }
 }

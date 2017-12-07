@@ -3,37 +3,71 @@ using Claudias.Handball.Repository;
 using Claudias.Handball.Models;
 using System.Collections.Generic;
 using System.Text;
+using Claudias.Handball.Repository.Core;
+using System.Data.SqlClient;
 
 namespace Claudias.Handball
 {
     class Program
     {
-       static void Main(string[] args)
+        private static void ShowArticles(RepositoryContext repositoryContext)
         {
-            ArticleRepository articleRepository = new ArticleRepository();
+            List<Article> articles = repositoryContext.ArticleRepository.ReadAll();
 
-            Article article1 = new Article();
-            article1.ArticleId = new Guid("86CA5305-18F6-4A15-65BC-AB12345DD123");
-            article1.Title = "NEW WIN FOR THE TEAM";
-            article1.Author = "Mary Koren";
-            article1.Description = "ULl uvkrjn bgvrfd";
-
-            
-            articleRepository.Insert(article1);
-            Article article2 = articleRepository.ReadById(article1.ArticleId);
-
-            Console.WriteLine("{0} {1} {2} {3}", article2.ArticleId, article2.Title, article2.Author, article2.Description);
-
-            articleRepository.Update(article1);
-            articleRepository.Delete(article1);
-            
-           List<Article> articles = articleRepository.ReadAll();
+            Console.WriteLine("Articles:");
             foreach (Article article in articles)
             {
-              Console.WriteLine("{0} {1} {2} {3}", article.ArticleId,article.Title, article.Author,article.Description);
+             Console.WriteLine("{0} {1} {2} {3}", article.ArticleId,article.Title, article.Author,article.Description);
             }
 
-            Console.ReadKey();
+        }
+        private static void ShowArticle(RepositoryContext repositoryContext)
+        {
+            SqlParameter parameter = new SqlParameter("@ArticleID", "86CA5305-18F6-4A15-65BC-AB12345DD124");
+            List<Article> articles=repositoryContext.ArticleRepository.ReadById(parameter );
+            foreach(Article article in articles)
+            Console.WriteLine("{0} {1} {2} {3}", article.ArticleId, article.Title, article.Author, article.Description);
+        }
+
+        private static void InsertArticle(RepositoryContext repositoryContext)
+        {
+            SqlParameter[] parameters = { new SqlParameter("@ArticleID", "86CA5305-18F6-4A15-65BC-AB12345DD124"),
+                                          new SqlParameter("@Title","VICTORIEEEEE"),
+                                          new SqlParameter("@Author","ION Jake"),
+                                          new SqlParameter("@Description","description description description ")};
+
+            repositoryContext.ArticleRepository.Insert(parameters);
+        }
+
+        private static void UpdateArticle(RepositoryContext repositoryContext)
+        {
+            SqlParameter[] parameters = { new SqlParameter("@ArticleID", "86CA5305-18F6-4A15-65BC-AB12345DD124"),
+                                          new SqlParameter("@Title","WINNNNNNNNNNNNNNNNNNNNNNN"),
+                                          new SqlParameter("@Author","ION Jake"),
+                                          new SqlParameter("@Description","description description description ")};
+            repositoryContext.ArticleRepository.Update(parameters);
+        }
+        private static void DeleteArticle(RepositoryContext repositoryContext)
+        {
+            SqlParameter parameter = new SqlParameter("@ArticleID", "86CA5305-18F6-4A15-65BC-AB12345DD124");
+            repositoryContext.ArticleRepository.Delete( parameter);
+        }
+
+
+        static void Main(string[] args)
+        {
+            using (RepositoryContext repositoryContext = new RepositoryContext())
+            {
+                ShowArticles(repositoryContext);
+                InsertArticle(repositoryContext);
+                ShowArticle(repositoryContext);
+                UpdateArticle(repositoryContext);
+                DeleteArticle(repositoryContext);
+                
+
+
+                Console.ReadKey();
+            }
         }
     }
 }

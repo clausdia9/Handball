@@ -1,74 +1,29 @@
 ﻿using Claudias.Handball.Models;
+using Claudias.Handball.Repository.Core;
 using System;
 using System.Data.SqlClient;
 
 namespace Claudias.Handball.Repository
 {
-    public class PlayerPositionRepository
+    public class PlayerPositionRepository:BaseRepository<PlayerPosition>
     {
 
         #region Methods
-        public void Insert(PlayerPosition playerPosition)
+        public void Insert(SqlParameter[] parameters = default(SqlParameter[]))
         {
-            string connectionString = "Server=ADMIN-PC\\SQLEXPRESS;Database=Handball;Trusted_Connection=True;";
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-
-                    using (SqlCommand command = new SqlCommand())
-                    {
-                        command.Connection = connection;
-                        command.CommandText = "dbo.PlayersPositions_Create";
-                        command.CommandType = System.Data.CommandType.StoredProcedure;
-
-                        command.Parameters.Add(new SqlParameter("@PlayerID", playerPosition.PlayerId));
-                        command.Parameters.Add(new SqlParameter("@PositionID", playerPosition.PositionId));
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                    }
-                }
-                catch (SqlException sqlEx)
-                {
-                    Console.WriteLine("There was an SQL error: {0}", sqlEx.ToString());
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("There was an error: {0}", ex.ToString());
-                }
-            }
+            Insert("dbo.PlayersPositions_Create", parameters);
         }
 
-        public void Delete(PlayerPosition playerPosition)
+        public void Delete(SqlParameter parameter)
         {
-            string connectionString = "Server=ADMIN-PC\\SQLEXPRESS;Database=Handball;Trusted_Connection=True;";
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-
-                    using (SqlCommand command = new SqlCommand())
-                    {
-                        command.Connection = connection;
-                        command.CommandText = "dbo.PlayersPositions_Delete";
-                        command.CommandType = System.Data.CommandType.StoredProcedure;
-                        command.Parameters.Add(new SqlParameter("@PlayerID", playerPosition.PlayerId));
-                        command.Parameters.Add(new SqlParameter("@PhotoID", playerPosition.PositionId));
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                    }
-                }
-                catch (SqlException sqlEx)
-                {
-                    Console.WriteLine("There was an SQL error: {0}", sqlEx.ToString());
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("There was an error: {0}", ex.ToString());
-                }
-            }
+            Delete("dbo.PlayersPositions_Delete", parameter);
+        }
+        protected override PlayerPosition GetModelFromReader(SqlDataReader reader)
+        {
+            PlayerPosition playerPosition = new PlayerPosition();
+            playerPosition.PlayerId = reader.GetGuid(reader.GetOrdinal("PlayerID"));
+            playerPosition.PositionId = reader.GetGuid(reader.GetOrdinal("PositionID"));
+            return playerPosition;
         }
         #endregion Methods
     }
