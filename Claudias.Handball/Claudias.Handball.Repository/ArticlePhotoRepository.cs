@@ -1,5 +1,4 @@
 ﻿using Claudias.Handball.Models;
-using System;
 using System.Data.SqlClient;
 using Claudias.Handball.Repository.Core;
 
@@ -24,8 +23,8 @@ namespace Claudias.Handball.Repository
         protected override ArticlePhoto GetModelFromReader(SqlDataReader reader)
         {
             ArticlePhoto articlePhoto = new ArticlePhoto();
-            articlePhoto.ArticleId= reader.GetGuid(reader.GetOrdinal("ArticleID"));
-            articlePhoto.PhotoId= reader.GetGuid(reader.GetOrdinal("PhotoID"));
+            articlePhoto.ArticleId = reader.GetGuid(reader.GetOrdinal("ArticleID"));
+            articlePhoto.PhotoId = reader.GetGuid(reader.GetOrdinal("PhotoID"));
             return articlePhoto;
         }
         #endregion Methods

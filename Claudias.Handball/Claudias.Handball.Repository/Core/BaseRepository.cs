@@ -76,7 +76,7 @@ namespace Claudias.Handball.Repository.Core
                         command.CommandType = System.Data.CommandType.StoredProcedure;
 
                         
-                            command.Parameters.Add(parameter);
+                        command.Parameters.Add(parameter);
 
                         connection.Open();
                         command.ExecuteNonQuery();
@@ -101,7 +101,7 @@ namespace Claudias.Handball.Repository.Core
             }
         }
 
-        public void Insert(string storedProcedureName, SqlParameter[] parameters = default(SqlParameter[]))
+        public void Insert(string storedProcedureName, SqlParameter[] parameters= default(SqlParameter[]))
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -114,7 +114,9 @@ namespace Claudias.Handball.Repository.Core
                         command.Connection = connection;
                         command.CommandText =storedProcedureName;
                         command.CommandType = System.Data.CommandType.StoredProcedure;
+                        if(parameters!=null)
                         command.Parameters.AddRange(parameters);
+
                         connection.Open();
                         command.ExecuteNonQuery();
                     }
@@ -142,7 +144,9 @@ namespace Claudias.Handball.Repository.Core
                         command.Connection = connection;
                         command.CommandText = storedProcedureName;
                         command.CommandType = System.Data.CommandType.StoredProcedure;
+                        if(parameters!=null)
                         command.Parameters.AddRange(parameters);
+
                         connection.Open();
                         command.ExecuteNonQuery();
                     }

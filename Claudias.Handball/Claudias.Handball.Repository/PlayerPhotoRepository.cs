@@ -1,6 +1,5 @@
 ﻿using Claudias.Handball.Models;
 using Claudias.Handball.Repository.Core;
-using System;
 using System.Data.SqlClient;
 
 namespace Claudias.Handball.Repository

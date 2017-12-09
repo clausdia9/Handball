@@ -12,8 +12,8 @@ namespace Claudias.Handball
     {
         private static void ShowArticles(RepositoryContext repositoryContext)
         {
+            
             List<Article> articles = repositoryContext.ArticleRepository.ReadAll();
-
             Console.WriteLine("Articles:");
             foreach (Article article in articles)
             {
