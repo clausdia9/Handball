@@ -13,12 +13,12 @@ namespace Claudias.Handball.Repository
 
         public void Insert(SqlParameter[] parameters = default(SqlParameter[]))
         {
-            Insert("dbo.ArticlesPhotos_Create", parameters);
+            Modify("dbo.ArticlesPhotos_Create", parameters);
         }
         
-        public void Delete(SqlParameter parameter)
+        public void Delete(SqlParameter[] parameters)
         {
-            Delete("dbo.ArticlesPhotos_Delete", parameter);
+            Modify("dbo.ArticlesPhotos_Delete", parameters);
         }
         protected override ArticlePhoto GetModelFromReader(SqlDataReader reader)
         {

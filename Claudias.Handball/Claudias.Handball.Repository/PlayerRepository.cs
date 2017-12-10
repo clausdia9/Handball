@@ -13,22 +13,22 @@ namespace Claudias.Handball.Repository
         {
             return ReadAll("dbo.Players_ReadAll");
         }
-        public List<Player> ReadById(SqlParameter parameter)
+        public List<Player> ReadById(SqlParameter[] parameters)
         {
-            return ReadById("dbo.Players_ReadById", parameter);
+            return ReadAll("dbo.Players_ReadById", parameters);
         }
 
         public void Insert(SqlParameter[] parameters = default(SqlParameter[]))
         {
-            Insert("dbo.Players_Create", parameters);
+            Modify("dbo.Players_Create", parameters);
         }
         public void Update(SqlParameter[] parameters = default(SqlParameter[]))
         {
-            Update("dbo.Players_Update", parameters);
+            Modify("dbo.Players_Update", parameters);
         }
-        public void Delete(SqlParameter parameter)
+        public void Delete(SqlParameter[] parameters)
         {
-            Delete("dbo.Players_Delete", parameter);
+            Modify("dbo.Players_Delete", parameters);
         }
         protected override Player GetModelFromReader(SqlDataReader reader)
         {

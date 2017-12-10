@@ -21,12 +21,12 @@ namespace Claudias.Handball
             }
 
         }
-        private static void ShowArticle(RepositoryContext repositoryContext)
+        private static void ReadByIdArticle(RepositoryContext repositoryContext)
         {
-            SqlParameter parameter = new SqlParameter("@ArticleID", "86CA5305-18F6-4A15-65BC-AB12345DD124");
-            List<Article> articles=repositoryContext.ArticleRepository.ReadById(parameter );
+            SqlParameter[] parameters = {new SqlParameter("@ArticleID", "86CA5305-18F6-4A15-65BC-AB12345DD124")};
+            List<Article> articles=repositoryContext.ArticleRepository.ReadById(parameters );
             foreach(Article article in articles)
-            Console.WriteLine("{0} {1} {2} {3}", article.ArticleId, article.Title, article.Author, article.Description);
+            Console.WriteLine("{0} {1} {2} {3} ", article.ArticleId, article.Title, article.Author, article.Description);
         }
 
         private static void InsertArticle(RepositoryContext repositoryContext)
@@ -49,8 +49,8 @@ namespace Claudias.Handball
         }
         private static void DeleteArticle(RepositoryContext repositoryContext)
         {
-            SqlParameter parameter = new SqlParameter("@ArticleID", "86CA5305-18F6-4A15-65BC-AB12345DD124");
-            repositoryContext.ArticleRepository.Delete( parameter);
+            SqlParameter[] parameters = {new SqlParameter  ("@ArticleID", "86CA5305-18F6-4A15-65BC-AB12345DD124")};
+            repositoryContext.ArticleRepository.Delete( parameters);
         }
 
 
@@ -60,8 +60,9 @@ namespace Claudias.Handball
             {
                 ShowArticles(repositoryContext);
                 InsertArticle(repositoryContext);
-                ShowArticle(repositoryContext);
+                ReadByIdArticle(repositoryContext);
                 UpdateArticle(repositoryContext);
+                ReadByIdArticle(repositoryContext);
                 DeleteArticle(repositoryContext);
                 
 

@@ -10,12 +10,12 @@ namespace Claudias.Handball.Repository
         #region Methods
         public void Insert(SqlParameter[] parameters = default(SqlParameter[]))
         {
-            Insert("dbo.PlayersPositions_Create", parameters);
+            Modify("dbo.PlayersPositions_Create", parameters);
         }
 
-        public void Delete(SqlParameter parameter)
+        public void Delete(SqlParameter[] parameters)
         {
-            Delete("dbo.PlayersPositions_Delete", parameter);
+            Modify("dbo.PlayersPositions_Delete", parameters);
         }
         protected override PlayerPosition GetModelFromReader(SqlDataReader reader)
         {

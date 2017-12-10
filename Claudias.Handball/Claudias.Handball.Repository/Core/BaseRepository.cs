@@ -61,47 +61,7 @@ namespace Claudias.Handball.Repository.Core
             return result;
         }
 
-        public List<TModel> ReadById(string storedProcedureName, SqlParameter parameter)
-        {
-            List<TModel> result = new List<TModel>();
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            {
-                try
-                {
-
-                    using (SqlCommand command = new SqlCommand())
-                    {
-                        command.Connection = connection;
-                        command.CommandText = storedProcedureName;
-                        command.CommandType = System.Data.CommandType.StoredProcedure;
-
-                        
-                        command.Parameters.Add(parameter);
-
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            reader.Read();
-                             result.Add(GetModelFromReader(reader));
-                        }
-                    }
-
-                }
-                catch (SqlException sqlEx)
-                {
-                    Console.WriteLine("There was an SQL error: {0}", sqlEx.ToString());
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("There was an error: {0}", ex.ToString());
-                }
-                return result;
-
-            }
-        }
-
-        public void Insert(string storedProcedureName, SqlParameter[] parameters= default(SqlParameter[]))
+        public void Modify(string storedProcedureName, SqlParameter[] parameters)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -114,7 +74,10 @@ namespace Claudias.Handball.Repository.Core
                         command.Connection = connection;
                         command.CommandText =storedProcedureName;
                         command.CommandType = System.Data.CommandType.StoredProcedure;
-                        if(parameters!=null)
+                        if (parameters == null)
+                        {
+                            throw new Exception("SqlParameters must not be null!");
+                        }
                         command.Parameters.AddRange(parameters);
 
                         connection.Open();
@@ -131,64 +94,6 @@ namespace Claudias.Handball.Repository.Core
                 }
             }
         }
-
-        public void Update(string storedProcedureName, SqlParameter[] parameters = default(SqlParameter[]))
-        {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            {
-                try
-                {
-
-                    using (SqlCommand command = new SqlCommand())
-                    {
-                        command.Connection = connection;
-                        command.CommandText = storedProcedureName;
-                        command.CommandType = System.Data.CommandType.StoredProcedure;
-                        if(parameters!=null)
-                        command.Parameters.AddRange(parameters);
-
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                    }
-                }
-                catch (SqlException sqlEx)
-                {
-                    Console.WriteLine("There was an SQL error: {0}", sqlEx.ToString());
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("There was an error: {0}", ex.ToString());
-                }
-            }
-        }
-        public void Delete(string storedProcedureName, SqlParameter parameter)
-        {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            {
-                try
-                {
-
-                    using (SqlCommand command = new SqlCommand())
-                    {
-                        command.Connection = connection;
-                        command.CommandText = storedProcedureName;
-                        command.CommandType = System.Data.CommandType.StoredProcedure;
-                        command.Parameters.Add(parameter);
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                    }
-                }
-                catch (SqlException sqlEx)
-                {
-                    Console.WriteLine("There was an SQL error: {0}", sqlEx.ToString());
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("There was an error: {0}", ex.ToString());
-                }
-            }
-        }
-
         protected abstract TModel GetModelFromReader(SqlDataReader reader);
         #endregion
     }
