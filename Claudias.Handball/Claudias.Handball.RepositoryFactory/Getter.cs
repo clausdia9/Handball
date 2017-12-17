@@ -1,5 +1,6 @@
 ﻿using Claudias.Handball.Repository.Core;
 using Claudias.Handball.RepositoryAbstraction.Core;
+using System.Configuration;
 
 namespace Claudias.Handball.RepositoryFactory
 {
@@ -7,10 +8,9 @@ namespace Claudias.Handball.RepositoryFactory
     {
         public static IRepositoryContext GetRepository()
         {
-            //Get data from config.
-            bool isADONetRepositoryRequested = true;
-            if (isADONetRepositoryRequested)
-               return new RepositoryContext();
+            string type = ConfigurationManager.AppSettings["RequestedType"];
+            if (type.Equals("ADO"))
+                return new RepositoryContext();
 
             return default(IRepositoryContext);
         }
