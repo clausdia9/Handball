@@ -15,6 +15,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL", "SQL", "{8572832B-66C
 		TablesPopulation.sql = TablesPopulation.sql
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Claudias.Handball.RepositoryAbstraction", "Claudias.Handball.RepositoryAbstraction\Claudias.Handball.RepositoryAbstraction.csproj", "{E4D4B7C3-23DB-401C-A675-2E47A7081BC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Claudias.Handball.RepositoryFactory", "Claudias.Handball.RepositoryFactory\Claudias.Handball.RepositoryFactory.csproj", "{F82966BE-FF49-4616-8494-25741BDB13CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Claudias.Handball.Business", "Claudias.Handball.Business\Claudias.Handball.Business.csproj", "{831BD7AA-D341-4661-95A7-E5C3D338CB1E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +39,18 @@ Global
 		{A347398D-B206-4C68-83C0-BEFCF624108F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A347398D-B206-4C68-83C0-BEFCF624108F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A347398D-B206-4C68-83C0-BEFCF624108F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4D4B7C3-23DB-401C-A675-2E47A7081BC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4D4B7C3-23DB-401C-A675-2E47A7081BC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4D4B7C3-23DB-401C-A675-2E47A7081BC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4D4B7C3-23DB-401C-A675-2E47A7081BC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F82966BE-FF49-4616-8494-25741BDB13CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F82966BE-FF49-4616-8494-25741BDB13CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F82966BE-FF49-4616-8494-25741BDB13CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F82966BE-FF49-4616-8494-25741BDB13CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{831BD7AA-D341-4661-95A7-E5C3D338CB1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{831BD7AA-D341-4661-95A7-E5C3D338CB1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{831BD7AA-D341-4661-95A7-E5C3D338CB1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{831BD7AA-D341-4661-95A7-E5C3D338CB1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

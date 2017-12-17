@@ -4,15 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A347398D-B206-4C68-83C0-BEFCF624108F}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>Claudias.Handball</RootNamespace>
-    <AssemblyName>Claudias.Handball</AssemblyName>
+    <ProjectGuid>{F82966BE-FF49-4616-8494-25741BDB13CA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Claudias.Handball.RepositoryFactory</RootNamespace>
+    <AssemblyName>Claudias.Handball.RepositoryFactory</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -30,12 +29,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject>Claudias.Handball.Program</StartupObject>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -45,20 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Getter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Claudias.Handball.Business\Claudias.Handball.Business.csproj">
-      <Project>{831bd7aa-d341-4661-95a7-e5c3d338cb1e}</Project>
-      <Name>Claudias.Handball.Business</Name>
+    <ProjectReference Include="..\Claudias.Handball.RepositoryAbstraction\Claudias.Handball.RepositoryAbstraction.csproj">
+      <Project>{e4d4b7c3-23db-401c-a675-2e47a7081bc3}</Project>
+      <Name>Claudias.Handball.RepositoryAbstraction</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Claudias.Handball.Models\Claudias.Handball.Models.csproj">
-      <Project>{3ff77c20-94e1-49d8-a2ce-4117136b71a5}</Project>
-      <Name>Claudias.Handball.Models</Name>
+    <ProjectReference Include="..\Claudias.Handball.Repository\Claudias.Handball.Repository.csproj">
+      <Project>{93e66832-8bbd-4067-a2e0-4c005926def4}</Project>
+      <Name>Claudias.Handball.Repository</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

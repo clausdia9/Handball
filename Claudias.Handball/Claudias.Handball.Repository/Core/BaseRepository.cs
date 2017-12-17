@@ -25,7 +25,7 @@ namespace Claudias.Handball.Repository.Core
             
         }
 
-        public List<TModel> ReadAll(string storedProcedureName, SqlParameter[] parameters = default(SqlParameter[]))
+        public List<TModel> ReadAll(string storedProcedureName, IEnumerable<SqlParameter> parameters = default(IEnumerable<SqlParameter>))
         {
             List<TModel> result = new List<TModel>();
 
@@ -40,8 +40,12 @@ namespace Claudias.Handball.Repository.Core
                         command.CommandText = storedProcedureName;
                         command.CommandType = System.Data.CommandType.StoredProcedure;
                         if (parameters != null)
-                           command.Parameters.AddRange(parameters);
-
+                        {
+                            foreach (SqlParameter parameter in parameters)
+                            {
+                                command.Parameters.Add(parameter);
+                            }
+                        }
                         connection.Open();
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
@@ -61,7 +65,7 @@ namespace Claudias.Handball.Repository.Core
             return result;
         }
 
-        public void Modify(string storedProcedureName, SqlParameter[] parameters)
+        public void ExecuteNonQuery(string storedProcedureName, IEnumerable<SqlParameter> parameters)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -78,8 +82,10 @@ namespace Claudias.Handball.Repository.Core
                         {
                             throw new Exception("SqlParameters must not be null!");
                         }
-                        command.Parameters.AddRange(parameters);
-
+                        foreach (SqlParameter parameter in parameters)
+                        {
+                                command.Parameters.Add(parameter);
+                        }
                         connection.Open();
                         command.ExecuteNonQuery();
                     }
@@ -94,6 +100,7 @@ namespace Claudias.Handball.Repository.Core
                 }
             }
         }
+
         protected abstract TModel GetModelFromReader(SqlDataReader reader);
         #endregion
     }

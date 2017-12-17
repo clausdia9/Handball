@@ -2,35 +2,50 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using Claudias.Handball.Repository.Core;
-        
+using System.Linq;
+using System;
+using Claudias.Handball.RepositoryAbstraction;
+
 namespace Claudias.Handball.Repository
     {
-        
-        public class NextEventRepository : BaseRepository<NextEvent>
+        public class NextEventRepository : BaseRepository<NextEvent>,INextEventRepository
         {
-
             #region Methods
             public List<NextEvent> ReadAll()
             {
                 return ReadAll("dbo.NextEvents_ReadAll");
             }
-            public List<NextEvent> ReadById(SqlParameter[] parameters)
+
+            public NextEvent ReadById(Guid eventId)
             {
-                return ReadAll("dbo.NextEvents_ReadById", parameters);
+            SqlParameter[] parameter = { new SqlParameter("@EventID",eventId) };
+                return ReadAll("dbo.NextEvents_ReadById", parameter).Single();
             }
 
-            public void Insert(SqlParameter[] parameters = default(SqlParameter[]))
+            public void Insert(NextEvent nextEvent)
             {
-                Modify("dbo.NextEvents_Create", parameters);
+                SqlParameter[] parameters = {new SqlParameter("@EventID",nextEvent.EventId),
+                                             new SqlParameter("@EventName",nextEvent.EventName),
+                                             new SqlParameter("@Location",nextEvent.Location),
+                                             new SqlParameter("@Date",nextEvent.Date)};
+                ExecuteNonQuery("dbo.NextEvents_Create", parameters);
             }
-            public void Update(SqlParameter[] parameters = default(SqlParameter[]))
+
+            public void Update(NextEvent nextEvent)
             {
-                Modify("dbo.NextEvents_Update", parameters);
+                SqlParameter[] parameters = {new SqlParameter("@EventID",nextEvent.EventId),
+                                             new SqlParameter("@EventName",nextEvent.EventName),
+                                             new SqlParameter("@Location",nextEvent.Location),
+                                             new SqlParameter("@Date",nextEvent.Date)};
+                ExecuteNonQuery("dbo.NextEvents_Update", parameters);
             }
-            public void Delete(SqlParameter[] parameters)
+
+            public void Delete(Guid nextEventId)
             {
-                Modify("dbo.NextEvents_Delete", parameters);
+                SqlParameter[] parameter = { new SqlParameter("@EventID", nextEventId) };
+                ExecuteNonQuery("dbo.NextEvents_Delete", parameter);
             }
+
             protected override NextEvent GetModelFromReader(SqlDataReader reader)
             {
             NextEvent nextEvent = new NextEvent();

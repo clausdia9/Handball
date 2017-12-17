@@ -1,11 +1,14 @@
 ﻿using Claudias.Handball.Models;
 using Claudias.Handball.Repository.Core;
+using Claudias.Handball.RepositoryAbstraction;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace Claudias.Handball.Repository
 {
-    public class PlayerRepository:BaseRepository<Player>
+    public class PlayerRepository:BaseRepository<Player>,IPlayerRepository
     {
 
         #region Methods
@@ -13,23 +16,36 @@ namespace Claudias.Handball.Repository
         {
             return ReadAll("dbo.Players_ReadAll");
         }
-        public List<Player> ReadById(SqlParameter[] parameters)
+
+        public Player ReadById(Guid playerId)
         {
-            return ReadAll("dbo.Players_ReadById", parameters);
+            SqlParameter[] parameters = { new SqlParameter("@PlayerID", playerId) };
+            return ReadAll("dbo.Players_ReadById", parameters).Single();
         }
 
-        public void Insert(SqlParameter[] parameters = default(SqlParameter[]))
+        public void Insert(Player player)
         {
-            Modify("dbo.Players_Create", parameters);
+            SqlParameter[] parameters = {new SqlParameter("@PlayerID",player.PlayerId),
+                                         new SqlParameter("@PlayerName",player.PlayerName),
+                                         new SqlParameter("@Goals",player.Goals),
+                                         new SqlParameter("@BirthDay",player.BirthDay)};
+            ExecuteNonQuery("dbo.Players_Create", parameters);
         }
-        public void Update(SqlParameter[] parameters = default(SqlParameter[]))
+        public void Update(Player player)
         {
-            Modify("dbo.Players_Update", parameters);
+            SqlParameter[] parameters = {new SqlParameter("@PlayerID",player.PlayerId),
+                                         new SqlParameter("@PlayerName",player.PlayerName),
+                                         new SqlParameter("@Goals",player.Goals),
+                                         new SqlParameter("@BirthDay",player.BirthDay)};
+            ExecuteNonQuery("dbo.Players_Update", parameters);
         }
-        public void Delete(SqlParameter[] parameters)
+
+        public void Delete(Guid playerId)
         {
-            Modify("dbo.Players_Delete", parameters);
+            SqlParameter[] parameters = { new SqlParameter("@PlayerID", playerId) };
+            ExecuteNonQuery("dbo.Players_Delete", parameters);
         }
+
         protected override Player GetModelFromReader(SqlDataReader reader)
         {
             Player player = new Player();

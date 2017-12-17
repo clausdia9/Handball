@@ -1,11 +1,14 @@
 ﻿using Claudias.Handball.Models;
 using Claudias.Handball.Repository.Core;
+using Claudias.Handball.RepositoryAbstraction;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace Claudias.Handball.Repository
 {
-    public class UserRepository:BaseRepository<User>
+    public class UserRepository:BaseRepository<User>,IUserRepository
     {
 
         #region Methods
@@ -13,23 +16,37 @@ namespace Claudias.Handball.Repository
         {
             return ReadAll("dbo.Users_ReadAll");
         }
-        public List<User> ReadById(SqlParameter[] parameters)
+
+        public User ReadById(Guid userId)
         {
-            return ReadAll("dbo.Users_ReadById", parameters);
+            SqlParameter[] parameter = {new SqlParameter("@UserID",userId) };
+            return ReadAll("dbo.Users_ReadById", parameter).Single();
         }
 
-        public void Insert(SqlParameter[] parameters = default(SqlParameter[]))
+        public void Insert(User user)
         {
-            Modify("dbo.Users_Create", parameters);
+            SqlParameter[] parameters = {new SqlParameter("@UserID",user.UserId),
+                                         new SqlParameter("@UserName",user.UserName),
+                                         new SqlParameter("@Password",user.Password),
+                                         new SqlParameter("@UserType",user.UserType)};
+            ExecuteNonQuery("dbo.Users_Create", parameters);
         }
-        public void Update(SqlParameter[] parameters = default(SqlParameter[]))
+
+        public void Update(User user)
         {
-            Modify("dbo.Users_Update", parameters);
+            SqlParameter[] parameters = {new SqlParameter("@UserID",user.UserId),
+                                         new SqlParameter("@UserName",user.UserName),
+                                         new SqlParameter("@Password",user.Password),
+                                         new SqlParameter("@UserType",user.UserType)};
+            ExecuteNonQuery("dbo.Users_Update", parameters);
         }
-        public void Delete(SqlParameter[] parameters)
+
+        public void Delete(Guid userId)
         {
-            Modify("dbo.Users_Delete", parameters);
+            SqlParameter[] parameter = { new SqlParameter("@UserID", userId) };
+            ExecuteNonQuery("dbo.Users_Delete", parameter);
         }
+
         protected override User GetModelFromReader(SqlDataReader reader)
         {
             User user = new User();

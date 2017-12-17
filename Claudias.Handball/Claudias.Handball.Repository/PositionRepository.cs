@@ -1,11 +1,14 @@
 ﻿using Claudias.Handball.Models;
 using Claudias.Handball.Repository.Core;
+using Claudias.Handball.RepositoryAbstraction;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace Claudias.Handball.Repository
 {
-    public class PositionRepository:BaseRepository<Position>
+    public class PositionRepository:BaseRepository<Position>,IPositionRepository
     {
 
         #region Methods
@@ -13,23 +16,33 @@ namespace Claudias.Handball.Repository
         {
             return ReadAll("dbo.Positions_ReadAll");
         }
-        public List<Position> ReadById(SqlParameter[] parameters)
+
+        public Position ReadById(Guid positionId)
         {
-            return ReadAll("dbo.Positions_ReadById", parameters);
+            SqlParameter[] parameter = {new SqlParameter("@PositionID",positionId)};
+            return ReadAll("dbo.Positions_ReadById", parameter).Single();
         }
 
-        public void Insert(SqlParameter[] parameters = default(SqlParameter[]))
+        public void Insert(Position position)
         {
-            Modify("dbo.Positions_Create", parameters);
+            SqlParameter[] parameters = {new SqlParameter("@PositionID",position.PositionId),
+                                         new SqlParameter("@PositionName", position.PositionName)};
+            ExecuteNonQuery("dbo.Positions_Create", parameters);
         }
-        public void Update(SqlParameter[] parameters = default(SqlParameter[]))
+
+        public void Update(Position position)
         {
-            Modify("dbo.Positions_Update", parameters);
+            SqlParameter[] parameters = {new SqlParameter("@PositionID",position.PositionId),
+                                         new SqlParameter("@PositionName", position.PositionName)};
+            ExecuteNonQuery("dbo.Positions_Update", parameters);
         }
-        public void Delete(SqlParameter[] parameters)
+
+        public void Delete(Guid positionId)
         {
-            Modify("dbo.Positions_Delete", parameters);
+            SqlParameter[] parameter = {new SqlParameter("@PositionID",positionId) };
+            ExecuteNonQuery("dbo.Positions_Delete", parameter);
         }
+
         protected override Position GetModelFromReader(SqlDataReader reader)
         {
             Position position = new Position();

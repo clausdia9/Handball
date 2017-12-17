@@ -1,22 +1,28 @@
 ﻿using Claudias.Handball.Models;
 using Claudias.Handball.Repository.Core;
+using Claudias.Handball.RepositoryAbstraction;
 using System.Data.SqlClient;
 
 namespace Claudias.Handball.Repository
 {
-    public class PlayerPositionRepository:BaseRepository<PlayerPosition>
+    public class PlayerPositionRepository:BaseRepository<PlayerPosition>,IPlayerPositionRepository
     {
 
         #region Methods
-        public void Insert(SqlParameter[] parameters = default(SqlParameter[]))
+        public void Insert(PlayerPosition playerPosition)
         {
-            Modify("dbo.PlayersPositions_Create", parameters);
+            SqlParameter[] parameters = { new SqlParameter("@PlayerID",playerPosition.PlayerId),
+                                          new SqlParameter("@PositionID",playerPosition.PositionId)};
+            ExecuteNonQuery("dbo.PlayersPositions_Create", parameters);
         }
 
-        public void Delete(SqlParameter[] parameters)
+        public void Delete(PlayerPosition playerPosition)
         {
-            Modify("dbo.PlayersPositions_Delete", parameters);
+            SqlParameter[] parameters = { new SqlParameter("@PlayerID",playerPosition.PlayerId),
+                                          new SqlParameter("@PositionID",playerPosition.PositionId)};
+            ExecuteNonQuery("dbo.PlayersPositions_Delete", parameters);
         }
+
         protected override PlayerPosition GetModelFromReader(SqlDataReader reader)
         {
             PlayerPosition playerPosition = new PlayerPosition();

@@ -4,15 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A347398D-B206-4C68-83C0-BEFCF624108F}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>Claudias.Handball</RootNamespace>
-    <AssemblyName>Claudias.Handball</AssemblyName>
+    <ProjectGuid>{E4D4B7C3-23DB-401C-A675-2E47A7081BC3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Claudias.Handball.RepositoryAbstraction</RootNamespace>
+    <AssemblyName>Claudias.Handball.RepositoryAbstraction</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -30,12 +29,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject>Claudias.Handball.Program</StartupObject>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -45,17 +40,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Core\IRepositoryContext.cs" />
+    <Compile Include="IArticlePhotoRepository.cs" />
+    <Compile Include="IArticleRepository.cs" />
+    <Compile Include="INextEventRepository.cs" />
+    <Compile Include="IPhotoRepository.cs" />
+    <Compile Include="IPlayerPhotoRepository.cs" />
+    <Compile Include="IPlayerPositionRepository.cs" />
+    <Compile Include="IPlayerRepository.cs" />
+    <Compile Include="IPositionRepository.cs" />
+    <Compile Include="IUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Claudias.Handball.Business\Claudias.Handball.Business.csproj">
-      <Project>{831bd7aa-d341-4661-95a7-e5c3d338cb1e}</Project>
-      <Name>Claudias.Handball.Business</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Claudias.Handball.Models\Claudias.Handball.Models.csproj">
       <Project>{3ff77c20-94e1-49d8-a2ce-4117136b71a5}</Project>
       <Name>Claudias.Handball.Models</Name>

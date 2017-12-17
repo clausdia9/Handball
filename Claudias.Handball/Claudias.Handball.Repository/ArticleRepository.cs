@@ -3,10 +3,12 @@ using Claudias.Handball.Repository.Core;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System;
+using System.Linq;
+using Claudias.Handball.RepositoryAbstraction;
 
 namespace Claudias.Handball.Repository
 {
-    public class ArticleRepository:BaseRepository<Article>
+    public class ArticleRepository:BaseRepository<Article>,IArticleRepository
     {
 
         #region Methods
@@ -14,23 +16,36 @@ namespace Claudias.Handball.Repository
         {
             return ReadAll("dbo.Articles_ReadAll");
         }
-        public List<Article> ReadById(SqlParameter[] parameters)
+        public Article ReadById(Guid articleId)
         {
-            return ReadAll("dbo.Articles_ReadById", parameters);
+            SqlParameter[] parameter = { new SqlParameter("@ArticleID", articleId) };
+            return ReadAll("dbo.Articles_ReadById", parameter).Single();
         }
 
-        public void Insert(SqlParameter[] parameters = default(SqlParameter[]))
+        public void Insert(Article article)
         {
-             Modify("dbo.Articles_Create", parameters);
+            SqlParameter[] parameters = {new SqlParameter("@ArticleID",article.ArticleId),
+                                         new SqlParameter("@Title",article.Title),
+                                         new SqlParameter("@Author",article.Author),
+                                         new SqlParameter("@Description",article.Description)};
+            ExecuteNonQuery("dbo.Articles_Create", parameters);
         }
-        public void Update(SqlParameter[] parameters = default(SqlParameter[]))
+
+        public void Update(Article article)
         {
-            Modify("dbo.Articles_Update", parameters);
+            SqlParameter[] parameters = {new SqlParameter("@ArticleID",article.ArticleId),
+                                         new SqlParameter("@Title",article.Title),
+                                         new SqlParameter("@Author",article.Author),
+                                         new SqlParameter("@Description",article.Description)};
+            ExecuteNonQuery("dbo.Articles_Update", parameters);
         }
-        public void Delete(SqlParameter[] parameters)
+
+        public void Delete(Guid articleId)
         {
-            Modify("dbo.Articles_Delete", parameters);
+            SqlParameter[] parameter = { new SqlParameter("@ArticleID", articleId) } ;
+            ExecuteNonQuery("dbo.Articles_Delete", parameter);
         }
+
         protected override Article GetModelFromReader(SqlDataReader reader)
         {
             Article article = new Article();

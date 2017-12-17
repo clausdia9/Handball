@@ -1,11 +1,14 @@
 ﻿using Claudias.Handball.Models;
 using Claudias.Handball.Repository.Core;
+using Claudias.Handball.RepositoryAbstraction;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace Claudias.Handball.Repository
 {
-    public class PhotoRepository:BaseRepository<Photo>
+    public class PhotoRepository:BaseRepository<Photo>,IPhotoRepository
     {
 
         #region Methods
@@ -13,23 +16,33 @@ namespace Claudias.Handball.Repository
         {
             return ReadAll("dbo.Photos_ReadAll");
         }
-        public List<Photo> ReadById(SqlParameter[] parameters)
+
+        public Photo ReadById(Guid photoId)
         {
-            return ReadAll("dbo.Photos_ReadById", parameters);
+            SqlParameter[] parameters = { new SqlParameter("@PhotoID", photoId) };
+            return ReadAll("dbo.Photos_ReadById", parameters).Single();
         }
 
-        public void Insert(SqlParameter[] parameters = default(SqlParameter[]))
+        public void Insert(Photo photo)
         {
-            Modify("dbo.Photos_Create", parameters);
+            SqlParameter[] parameters = {new SqlParameter("@PhotoID",photo.PhotoId),
+                                         new SqlParameter("@PhotoVarbinary",photo.PhotoVarbinary)};
+            ExecuteNonQuery("dbo.Photos_Create", parameters);
         }
-        public void Update(SqlParameter[] parameters = default(SqlParameter[]))
+
+        public void Update(Photo photo)
         {
-            Modify("dbo.Photos_Update", parameters);
+            SqlParameter[] parameters = {new SqlParameter("@PhotoID",photo.PhotoId),
+                                         new SqlParameter("@PhotoVarbinary",photo.PhotoVarbinary)};
+            ExecuteNonQuery("dbo.Photos_Update", parameters);
         }
-        public void Delete(SqlParameter[] parameters)
+
+        public void Delete(Guid photoId)
         {
-            Modify("dbo.Photos_Delete", parameters);
+            SqlParameter[] parameter = { new SqlParameter("@PhotoID", photoId) };
+            ExecuteNonQuery("dbo.Photos_Delete", parameter);
         }
+
         protected override Photo GetModelFromReader (SqlDataReader reader)
         {
             Photo photo = new Photo();

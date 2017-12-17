@@ -59,6 +59,10 @@
       <Project>{3ff77c20-94e1-49d8-a2ce-4117136b71a5}</Project>
       <Name>Claudias.Handball.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Claudias.Handball.RepositoryAbstraction\Claudias.Handball.RepositoryAbstraction.csproj">
+      <Project>{e4d4b7c3-23db-401c-a675-2e47a7081bc3}</Project>
+      <Name>Claudias.Handball.RepositoryAbstraction</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

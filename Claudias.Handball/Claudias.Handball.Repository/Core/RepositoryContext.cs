@@ -1,23 +1,46 @@
-﻿using System;
+﻿using Claudias.Handball.RepositoryAbstraction;
+using Claudias.Handball.RepositoryAbstraction.Core;
+using System;
 
 namespace Claudias.Handball.Repository.Core
 {
-    public class RepositoryContext : IDisposable
+    public class RepositoryContext : IRepositoryContext
     {
         #region Members
-        private ArticleRepository _articleRepository;
-        private ArticlePhotoRepository _articlePhotoRepository;
-        private NextEventRepository _nextEventRepository;
-        private PhotoRepository _photoRepository;
-        private PlayerPhotoRepository _playerPhotoRepository;
-        private PlayerPositionRepository _playerPositionRepository;
-        private PlayerRepository _playerRepository;
-        private PositionRepository _positionRepository;
-        private UserRepository _userRepository;
+        private static IRepositoryContext _instance;
+        
+        private IArticleRepository _articleRepository;
+        private IArticlePhotoRepository _articlePhotoRepository;
+        private INextEventRepository _nextEventRepository;
+        private IPhotoRepository _photoRepository;
+        private IPlayerPhotoRepository _playerPhotoRepository;
+        private IPlayerPositionRepository _playerPositionRepository;
+        private IPlayerRepository _playerRepository;
+        private IPositionRepository _positionRepository;
+        private IUserRepository _userRepository;
+        #endregion
+
+        #region Constructor
+        public RepositoryContext()
+        {
+            _instance = this;
+        }
         #endregion
 
         #region Properties
-        public ArticleRepository ArticleRepository
+        internal static IRepositoryContext Current
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    throw new Exception("No RepositoryContext instance available!");
+                }
+                return _instance;
+            }
+        }
+
+        public IArticleRepository ArticleRepository
         {
             get
             {
@@ -27,7 +50,7 @@ namespace Claudias.Handball.Repository.Core
             }
         }
 
-        public ArticlePhotoRepository ArticlePhotoRepository
+        public IArticlePhotoRepository ArticlePhotoRepository
         {
             get
             {
@@ -37,7 +60,7 @@ namespace Claudias.Handball.Repository.Core
             }
         }
 
-        public NextEventRepository NextEventRepository
+        public INextEventRepository NextEventRepository
         {
             get
             {
@@ -47,7 +70,7 @@ namespace Claudias.Handball.Repository.Core
             }
         }
 
-        public PhotoRepository PhotoRepository
+        public IPhotoRepository PhotoRepository
         {
             get
             {
@@ -57,7 +80,7 @@ namespace Claudias.Handball.Repository.Core
             }
         }
 
-        public PlayerPhotoRepository PlayerPhotoRepository
+        public IPlayerPhotoRepository PlayerPhotoRepository
         {
             get
             {
@@ -67,7 +90,7 @@ namespace Claudias.Handball.Repository.Core
             }
         }
 
-        public PlayerPositionRepository PlayerPositionRepository
+        public IPlayerPositionRepository PlayerPositionRepository
         {
             get
             {
@@ -77,7 +100,7 @@ namespace Claudias.Handball.Repository.Core
             }
         }
 
-        public PlayerRepository PlayerRepository
+        public IPlayerRepository PlayerRepository
         {
             get
             {
@@ -87,7 +110,7 @@ namespace Claudias.Handball.Repository.Core
             }
         }
 
-        public PositionRepository PositionRepository
+        public IPositionRepository PositionRepository
         {
             get
             {
@@ -97,7 +120,7 @@ namespace Claudias.Handball.Repository.Core
             }
         }
 
-        public UserRepository UserRepository
+        public IUserRepository UserRepository
         {
             get
             {
