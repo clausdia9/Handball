@@ -5,7 +5,7 @@
     var _menuElements = [
         {
             Id: "Home",
-            ContainerId: "divHomeContainer"
+            ContainerId: "divHomeContainer",
         },
         {
             Id: "News",
@@ -41,17 +41,14 @@
         var jqNavbarContainer = $("#navbarContainer"); //ul ID
        for (i = 0; i < _menuElements.length; i++) {
             //this creates a li jQuery object
-           if (_menuElements[i].Id.localeCompare("Home") == 0) {
-               var jqListItem = $("<li id='" + _menuElements[i].Id + "' class='nav-item'>")
-                   .append("<a class='nav-link' href='#'><b>" + _menuElements[i].Id + "</b></a>");
-           }
-           else
                if (_menuElements[i].Id.localeCompare("Search") == 0)
+                   //var jqListItem = $("<li id='" + _menuElements[i].Id + "' class='nav-item'>")
+                     //  .append("<a class='nav-link' href='#" + _menuElements[i].Id + "'>" +"<form class='form-inline'> <input class='form-control' type='text' placeholder='Search' id='link-box'> <button class='btn btn-dark' type='submit'  onclick='window.location = document.getElementById('link-box').placeholder;'>Search</button> </form>"+ "</a>");
                    var jqListItem = $("<form class='form-inline'>").append("<input class='form-control' type='text' placeholder='Search' id='link-box'>")
-                       .append("<button class='btn btn-dark' type='submit'  onclick='window.location = document.getElementById('link-box').placeholder;'>Search</button> </form>");
+                      .append("<button class='btn btn-dark' type='submit'  onclick='window.location = document.getElementById('link-box').placeholder;'>Search</button> </form>");
                else
-                var jqListItem = $("<li id='" + _menuElements[i].Id + "' class='nav-item'>")
-                    .append("<a class='nav-link' href='#'><b>" + _menuElements[i].Id + "</b></a>");
+                   var jqListItem = $("<li id='" + _menuElements[i].Id + "' class='nav-item'>")
+                       .append("<a class='nav-link' href='#" + _menuElements[i].Id+"'><b>" + _menuElements[i].Id + "</b></a>");
             jqNavbarContainer.append(jqListItem);
         }
 
@@ -72,9 +69,10 @@
             }
         }
 
-        if (!selectedContainerId) //is not undefined, null or ''
+        if (!selectedContainerId)//is not undefined, null or ''
             return;
-
+       
+        
         var mainContainers = $("main > div");
         for (i = 0; i < mainContainers.length; i++) {
             if (mainContainers[i].id != selectedContainerId) {
@@ -86,4 +84,9 @@
         }
      
     }
+}
+if (!location.hash) {
+
+    // default to #home
+    location.hash = "#Home";
 }
