@@ -12,9 +12,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="PhotoResources/logo-for-home.png" type="image/x-icon">
     <!-- App Scripts -->
+    <script src="Scripts/Services/homeService.js"></script>
+    <script src="Scripts/Services/teamService.js"></script>
+    <script src="Scripts/Services/newsService.js"></script>
+    <script src="Scripts/Services/scheduleService.js"></script>
+    <script src="Scripts/Services/serviceContext.js"></script>
+    <script src="Scripts/Controllers/homeJumbotronController.js"></script>
+    <script src="Scripts/Controllers/homeArticlesController.js"></script>
+    <script src="Scripts/Controllers/homeController.js"></script>
+    <script src="Scripts/Controllers/playerCardController.js"></script>
+    <script src="Scripts/Controllers/playersController.js"></script>
+    <script src="Scripts/Controllers/newsArticlesController.js"></script>
+    <script src="Scripts/Controllers/newsController.js"></script>
+    <script src="Scripts/Controllers/scheduleTableController.js"></script>
+    <script src="Scripts/Controllers/scheduleController.js"></script>
     <script src="Scripts/menuController.js"></script>
     <script src="Scripts/appController.js"></script>
 </head>
+
 <body>
     <div class="container">
         <header class="masthead">
@@ -33,330 +48,56 @@
         </header>
         <main role="main">
             <div id="divHomeContainer" style="display:none">
-                <div class="jumbotron">
-                    <div class="container text-center">
-                        <h1 class="text-light">Blue Ravens Handball</h1><br />
-                        <p class="text-white">Welcome to the official page of Blue Ravens Handball Team! </p>
-                    </div><!-- End container -->
-                </div><!-- End jumbotron-->
+               <div id="divHomeJumbotron"></div>
                 <img src="PhotoResources/logo-home3.png" class="sticky img-responsive col-md-6 right" />
-                <article class="col-md-6">
-                    <figure class="col-lg-12">
-                        <a href=""><img class="img img-responsive article-img" src="PhotoResources/18.jpg"></a>
-                        <figcaption class="article-caption">
-                            <h1 id="btn" class="article-title"><a href="">The team prepares for the new year games!</a></h1>
-                        
-                        </figcaption>
-                    </figure>
-                    <div class="article-intro col-lg-12 article-intro-style">
-                        <strong>Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor. Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor. Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor..</strong>
-                    </div>
-                </article>
-                <article class="col-md-6">
-                    <figure class="col-lg-12">
-                        <a href=""><img class="img img-responsive article-img" src="PhotoResources/18.jpg"></a>
-                        <figcaption class="article-caption">
-                            <h1 class="article-title"><a href="">The team prepares for the new year games!</a></h1>
-                        </figcaption>
-                    </figure>
-                    <div class="article-intro col-lg-12 article-intro-style">
-                        <strong>Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor. Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor. Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor..</strong>
-                    </div>
-                </article>
-                <article class="col-md-6">
-                    <figure class="col-lg-12">
-                        <a href=""><img class="img img-responsive article-img" src="PhotoResources/18.jpg"></a>
-                        <figcaption class="article-caption">
-                            <h1 class="article-title"><a href="">The team prepares for the new year games!</a></h1>
-                        </figcaption>
-                    </figure>
-                    <div class="article-intro col-lg-12 article-intro-style">
-                        <strong>Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor. Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor. Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor..</strong>
-                    </div>
-                </article>                 
+                <div id="divHomeArticles"></div>
             </div>
             <div id="divNewsContainer" style="display:none">
-                <div class="container">
-                    <div class="row">
-                        <div class="row">
-                            <article class="col-md-6">
-                                <figure class="col-lg-12">
-                                    <a href=""><img class="img img-responsive article-img" src="PhotoResources/18.jpg"></a>
-                                    <figcaption class="article-caption">
-                                        <h1 class="article-title"><a href="">The team prepares for the new year games!</a></h1>
-                                    </figcaption>
-                                </figure>
-                                <div class="article-intro col-lg-12 article-intro-style">
-                                    <strong>Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor. Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor. Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor..</strong>
-                                </div>
-                            </article>
-                            <article class="col-md-6">
-                                <figure class="col-lg-12">
-                                    <a href=""><img class="img img-responsive article-img" src="PhotoResources/19.jpg"></a>
-                                    <figcaption class="article-caption">
-                                        <h1 class="article-title"><a href="">First win in 3 games for Blue Ravens!</a></h1>
-                                    </figcaption>
-                                </figure>
-                                <div class="article-intro col-lg-12 article-intro-style">
-                                    <strong>Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor. Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor. Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor..</strong>
-                                </div>
-                            </article>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <article class="col-md-6">
-                                <figure class="col-lg-12">
-                                    <a href=""><img class="img img-responsive article-img" src="PhotoResources/20.jpg"></a>
-                                    <figcaption class="article-caption">
-                                        <h1 class="article-title"><a href="">Clear Victory for Blue Ravens!</a></h1>
-                                    </figcaption>
-                                </figure>
-                                <div class="article-intro col-lg-12 article-intro-style" >
-                                    <strong>Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor. Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor. Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor..</strong>
-                                </div>
-                            </article>
-                            <article class="col-md-6">
-                                <figure class="col-lg-12">
-                                    <a href=""><img class="img img-responsive article-img" src="PhotoResources/21.jpg"></a>
-                                    <figcaption class="article-caption">
-                                        <h1 class="article-title"><a href="">Last game of the year for our team!</a></h1>
-                                    </figcaption>
-                                </figure>
-                                <div class="article-intro col-lg-12 article-intro-style">
-                                    <strong>Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor. Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor. Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor..</strong>
-                                </div>
-                            </article>
-                        </div>
-                    </div>
-                </div>
+                <div class="text-center"><h3><b>News</b></h3><br /></div>
+              <div id="divNewsArticles" class="row"></div>
             </div>
-            <div id="divTeamContainer" style="display:none">
+            <div id="divTeamContainer" class="container" style="display:none" >
                 <div class="text-center"><h3><b>Team</b></h3><br /></div>
-                    <div class="row">
-                        <div class="container">
-                            <img class="left thumbnails for-thumbnails" src="PhotoResources/mork1.jpg" />
-                                <div class="container">
-                                    <h2>&nbsp&nbspNora Mork</h2>
-                                    <!-- Trigger the modal with a button -->
-                                    <br />
-                                    <br />
-                                    &nbsp&nbsp&nbsp
-                                    <button type="button" class="btn btn-md btn-primary" data-toggle="modal" data-target="#myModalMork">&nbspMore Details</button>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="myModalMork" role="dialog">
-                                        <div class="modal-dialog">
-                                            <!-- Modal content-->
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h4 class="modal-title">Player Details</h4>
-                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>Name:</p>
-                                                    <p>Position:</p>
-                                                    <p>Goals:<p>
-                                                    <p>Birthday:</p>
-                                                    <img class="img-responsive" src="PhotoResources/mork1.jpg" />
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div style="clear:both"></div>
-                                <br />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="container">
-                                <img class="left thumbnails for-thumbnails" src="PhotoResources/varzaru.jpg" />
-
-                                <div class="container">
-                                    <h2>&nbsp&nbspCristina Varzaru</h2>
-                                    <!-- Trigger the modal with a button -->
-                                    <br />
-                                    <br />
-                                    &nbsp&nbsp&nbsp
-                                    <button type="button" class="btn btn-md btn-primary" data-toggle="modal" data-target="#myModalVarzaru">&nbspMore Details</button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="myModalVarzaru" role="dialog">
-                                        <div class="modal-dialog">
-
-                                            <!-- Modal content-->
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h4 class="modal-title">Player Details</h4>
-                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-                                                </div>
-                                                <div class="modal-body">
-
-                                                    <p>Name:</p>
-                                                    <p>Position:</p>
-                                                    <p>Goals:<p>
-                                                    <p>Birthday:</p>
-                                                    <img class="img-responsive" src="PhotoResources/varzaru.jpg" />
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div style="clear:both"></div>
-                                <br />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="container">
-                                <img class="left thumbnails for-thumbnails" src="PhotoResources/neagu.jpg" />
-                                <div class="container">
-                                    <h2>&nbsp&nbspCristina Neagu</h2>
-                                    <!-- Trigger the modal with a button -->
-                                    <br />
-                                    <br />
-                                    &nbsp&nbsp&nbsp
-                                    <button type="button" class="btn btn-md btn-primary" data-toggle="modal" data-target="#myModalNeagu">&nbspMore Details</button>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="myModalNeagu" role="dialog">
-                                        <div class="modal-dialog">
-                                            <!-- Modal content-->
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h4 class="modal-title">Player Details</h4>
-                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>Name:</p>
-                                                    <p>Position:</p>
-                                                    <p>Goals:<p>
-                                                    <p>Birthday:</p>
-                                                    <img class="img-responsive" src="PhotoResources/neagu.jpg" />
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div style="clear:both"></div>
-                                <br />
-                            </div>
-                        </div>
-                        <br />
-                        <div class="row">
-                            <div class="container">
-                                <img class="left thumbnails " style="max-height:200px;max-width:100px" src="PhotoResources/gullden1.jpg" />
-                                <div class="container">
-                                    <h2>&nbsp&nbspIsabelle Gullden</h2>
-                                    <!-- Trigger the modal with a button -->
-                                    <br />
-                                    <br />
-                                    &nbsp&nbsp&nbsp
-                                    <button type="button" class="btn btn-md btn-primary" data-toggle="modal" data-target="#myModalGullden">&nbspMore Details</button>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="myModalGullden" role="dialog">
-                                        <div class="modal-dialog">
-                                            <!-- Modal content-->
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h4 class="modal-title">Player Details</h4>
-                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>Name:</p>
-                                                    <p>Position:</p>
-                                                    <p>Goals:<p>
-                                                    <p>Birthday:</p>
-                                                    <img class="img-responsive" src="PhotoResources/gullden1.jpg" />
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div style="clear:both"></div>
-                                <br />
-                            </div>
-                        </div>
-                    </div>
+                <div id="divPlayerCards" class="row"></div>
+            </div>
             <div id="divScheduleContainer" style="display:none">
                 <div class="text-center"><h3><b>Next Events</b></h3><br /></div>
-                    <div class="table-responsive">
-                        <table class="table table-condensed table-bordered table-hover">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>Event</th>
-                                    <th>Location</th>
-                                    <th>Date</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Blue Ravens Handball - U Cluj</td>
-                                    <td>Sala Sporturilor</td>
-                                     <td>23 Aprilie 2018</td>
-                                </tr>
-                                <tr>
-                                    <td>Blue Ravens Handball - Gyor</td>
-                                    <td>Sala Sporturilor</td>
-                                    <td>26 Aprilie 2018</td>
-                                </tr>
-                                 <tr>
-                                    <td>Blue Ravens Handball - Vardar</td>
-                                    <td>Sala Sporturilor</td>
-                                    <td>26 Aprilie 2018</td>
-                                 </tr>
-                            </tbody>
-                          </table>
-                        </div>
+                <div id="divScheduleTable"class="table-responsive"></div>
               </div>
             <div id="divPhotosContainer" style="display:none">
-                <div class="text-center"><h3><b>Team Photos</b></h3><br /></div>
-                    <div class="gallery" align="center">
-                        <h3>Blue Ravens Handball - Viborg HK </h3>
-                        <div class="thumbnails">
-                            <img onclick="preview.src=img1.src" name="img1" src="PhotoResources/img1.jpg" alt="" />
-                            <img onclick="preview.src=img2.src" name="img2" src="PhotoResources/img2.jpg" alt="" />
-                            <img onclick="preview.src=img3.src" name="img3" src="PhotoResources/img10.jpg" alt="" />
-                            <img onclick="preview.src=img4.src" name="img4" src="PhotoResources/img4.jpg" alt="" />
-                            <img onclick="preview.src=img5.src" name="img5" src="PhotoResources/img5.jpg" alt="" />
-                            <img onclick="preview.src=img15.src" name="img15" src="PhotoResources/img15.jpg" alt="" />
-                            <img onclick="preview.src=img16.src" name="img16" src="PhotoResources/img16.jpg" alt="" />
-                            <img onclick="preview.src=img17.src" name="img17" src="PhotoResources/img17.jpg" alt="" />
-                            <h3>Blue Ravens Handball - Oltchim</h3>
-                            <img onclick="preview.src=img6.src" name="img6" src="PhotoResources/img6.jpg" alt="" />
-                            <img onclick="preview.src=img7.src" name="img7" src="PhotoResources/img7.jpg" alt="" />
-                            <img onclick="preview.src=img8.src" name="img8" src="PhotoResources/img8.jpg" alt="" />
-                            <img onclick="preview.src=img9.src" name="img9" src="PhotoResources/img9.jpg" alt="" />
-                            <img onclick="preview.src=img11.src" name="img11" src="PhotoResources/img11.jpg" alt="" />
-                            <img onclick="preview.src=img12.src" name="img12" src="PhotoResources/img12.jpg" alt="" />
-                            <img onclick="preview.src=img13.src" name="img13" src="PhotoResources/img13.jpg" alt="" />
-                        </div>
-                        <div class="preview" align="center">
-                            <img class="img-responsive" name="preview" src="PhotoResources/img1.jpg" alt="" />
-                        </div>
-                  </div>
+                <div class="gallery" align="center">
+                    <h3>Blue Ravens Handball - Viborg HK </h3>
+                    <div class="thumbnails">
+                        <img onclick="preview.src=img1.src" name="img1" src="PhotoResources/img1.jpg" alt="" />
+                        <img onclick="preview.src=img2.src" name="img2" src="PhotoResources/img2.jpg" alt="" />
+                        <img onclick="preview.src=img3.src" name="img3" src="PhotoResources/img10.jpg" alt="" />
+                        <img onclick="preview.src=img4.src" name="img4" src="PhotoResources/img4.jpg" alt="" />
+                        <img onclick="preview.src=img5.src" name="img5" src="PhotoResources/img5.jpg" alt="" />
+                        <img onclick="preview.src=img15.src" name="img15" src="PhotoResources/img15.jpg" alt="" />
+                        <img onclick="preview.src=img16.src" name="img16" src="PhotoResources/img16.jpg" alt="" />
+                        <img onclick="preview.src=img17.src" name="img17" src="PhotoResources/img17.jpg" alt="" />
+                        <h3>Blue Ravens Handball - Oltchim</h3>
+                        <img onclick="preview.src=img6.src" name="img6" src="PhotoResources/img6.jpg" alt="" />
+                        <img onclick="preview.src=img7.src" name="img7" src="PhotoResources/img7.jpg" alt="" />
+                        <img onclick="preview.src=img8.src" name="img8" src="PhotoResources/img8.jpg" alt="" />
+                        <img onclick="preview.src=img9.src" name="img9" src="PhotoResources/img9.jpg" alt="" />
+                        <img onclick="preview.src=img11.src" name="img11" src="PhotoResources/img11.jpg" alt="" />
+                        <img onclick="preview.src=img12.src" name="img12" src="PhotoResources/img12.jpg" alt="" />
+                        <img onclick="preview.src=img13.src" name="img13" src="PhotoResources/img13.jpg" alt="" />
+                    </div>
+                    <div class="preview" align="center">
+                        <img class="img-responsive" name="preview" src="PhotoResources/img1.jpg" alt="" />
+                    </div>
+                </div>
+                    
              </div>
             <div id="divSignInContainer" style="display:none">
+                <div class="text-center"><h3><b>Register</b></h3></div>
                 <div class="col-lg-12">
-                    <div class="text-center"><h3><b>Register</b></h3></div>
+                    
                     <form class="form" role="form" method="post" action="signin" accept-charset="UTF-8" id="signin-nav">
                         <div class="form-group">
                             <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
-                        </div>
-                        <div class="form-group">
-                            <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
                         </div>
                         <div class="form-group">
                             <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
