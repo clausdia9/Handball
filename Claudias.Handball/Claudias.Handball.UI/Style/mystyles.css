@@ -24,7 +24,6 @@
     width: 800px;
 }
 
-
 /*team section*/
 /*.row {
     display: block;
@@ -93,6 +92,15 @@ img.sticky {
     position: sticky;
     top: 0;
  
+}
+/*clearfix*/
+.clearfix:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
 }
 
 

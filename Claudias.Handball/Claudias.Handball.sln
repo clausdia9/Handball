@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Claudias.Handball.Business"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Claudias.Handball.UI", "Claudias.Handball.UI\Claudias.Handball.UI.csproj", "{F217922E-748A-453A-B9A2-12C4BB9EA9CB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Claudias.Handball.API", "Claudias.Handball.API\Claudias.Handball.API.csproj", "{B565F2A7-B57A-4773-9D76-388B26497450}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{F217922E-748A-453A-B9A2-12C4BB9EA9CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F217922E-748A-453A-B9A2-12C4BB9EA9CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F217922E-748A-453A-B9A2-12C4BB9EA9CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B565F2A7-B57A-4773-9D76-388B26497450}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B565F2A7-B57A-4773-9D76-388B26497450}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B565F2A7-B57A-4773-9D76-388B26497450}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B565F2A7-B57A-4773-9D76-388B26497450}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,7 +2,7 @@
 
     var _self = this;
 
-    var _playerController = new PlayersController(serviceContext);
+    var _teamController = new TeamController(serviceContext);
 
     var _homeController = new HomeController(serviceContext);
 
@@ -10,7 +10,7 @@
 
     var _scheduleController = new ScheduleController(serviceContext);
 
-    var multi = {};
+    var _photosController = new PhotosController(serviceContext);
 
     var _menuElements = [
         {
@@ -26,7 +26,7 @@
         {
             Id: "Team",
             ContainerId: "divTeamContainer",
-            Controller: _playerController
+            Controller: _teamController
         },
         {
             Id: "Schedule",
@@ -36,7 +36,7 @@
         {
             Id: "Photos",
             ContainerId: "divPhotosContainer",
-            Controller: null
+            Controller: _photosController
         },
         {
             Id: "SignIn",
@@ -93,10 +93,10 @@
             }
             else {
                 $(mainContainers[i]).show();
-                if (multi[_menuElements[menuElementId].ContainerId] != 1) {
+            
                     _menuElements[menuElementId].Controller.RenderPage();
-                    multi[_menuElements[menuElementId].ContainerId] = 1;
-                }
+                   
+                
             }
         }
         

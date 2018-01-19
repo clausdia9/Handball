@@ -17,15 +17,18 @@
     <script src="Scripts/Services/newsService.js"></script>
     <script src="Scripts/Services/scheduleService.js"></script>
     <script src="Scripts/Services/serviceContext.js"></script>
+    <script src="Scripts/Services/photosService.js"></script>
     <script src="Scripts/Controllers/homeJumbotronController.js"></script>
     <script src="Scripts/Controllers/homeArticlesController.js"></script>
     <script src="Scripts/Controllers/homeController.js"></script>
-    <script src="Scripts/Controllers/playerCardController.js"></script>
-    <script src="Scripts/Controllers/playersController.js"></script>
+    <script src="Scripts/Controllers/teamPlayerCardController.js"></script>
+    <script src="Scripts/Controllers/teamController.js"></script>
     <script src="Scripts/Controllers/newsArticlesController.js"></script>
     <script src="Scripts/Controllers/newsController.js"></script>
     <script src="Scripts/Controllers/scheduleTableController.js"></script>
     <script src="Scripts/Controllers/scheduleController.js"></script>
+    <script src="Scripts/Controllers/photoCardController.js"></script>
+    <script src="Scripts/Controllers/photosController.js"></script>
     <script src="Scripts/menuController.js"></script>
     <script src="Scripts/appController.js"></script>
 </head>
@@ -47,11 +50,13 @@
             </nav>
         </header>
         <main role="main">
-            <div id="divHomeContainer" style="display:none">
+            <div id="divHomeContainer" class="container clearfix" style="display:none">
                <div id="divHomeJumbotron"></div>
                 <img src="PhotoResources/logo-home3.png" class="sticky img-responsive col-md-6 right" />
                 <div id="divHomeArticles"></div>
+                
             </div>
+            
             <div id="divNewsContainer" style="display:none">
                 <div class="text-center"><h3><b>News</b></h3><br /></div>
               <div id="divNewsArticles" class="row"></div>
@@ -62,35 +67,24 @@
             </div>
             <div id="divScheduleContainer" style="display:none">
                 <div class="text-center"><h3><b>Next Events</b></h3><br /></div>
-                <div id="divScheduleTable"class="table-responsive"></div>
-              </div>
-            <div id="divPhotosContainer" style="display:none">
-                <div class="gallery" align="center">
-                    <h3>Blue Ravens Handball - Viborg HK </h3>
-                    <div class="thumbnails">
-                        <img onclick="preview.src=img1.src" name="img1" src="PhotoResources/img1.jpg" alt="" />
-                        <img onclick="preview.src=img2.src" name="img2" src="PhotoResources/img2.jpg" alt="" />
-                        <img onclick="preview.src=img3.src" name="img3" src="PhotoResources/img10.jpg" alt="" />
-                        <img onclick="preview.src=img4.src" name="img4" src="PhotoResources/img4.jpg" alt="" />
-                        <img onclick="preview.src=img5.src" name="img5" src="PhotoResources/img5.jpg" alt="" />
-                        <img onclick="preview.src=img15.src" name="img15" src="PhotoResources/img15.jpg" alt="" />
-                        <img onclick="preview.src=img16.src" name="img16" src="PhotoResources/img16.jpg" alt="" />
-                        <img onclick="preview.src=img17.src" name="img17" src="PhotoResources/img17.jpg" alt="" />
-                        <h3>Blue Ravens Handball - Oltchim</h3>
-                        <img onclick="preview.src=img6.src" name="img6" src="PhotoResources/img6.jpg" alt="" />
-                        <img onclick="preview.src=img7.src" name="img7" src="PhotoResources/img7.jpg" alt="" />
-                        <img onclick="preview.src=img8.src" name="img8" src="PhotoResources/img8.jpg" alt="" />
-                        <img onclick="preview.src=img9.src" name="img9" src="PhotoResources/img9.jpg" alt="" />
-                        <img onclick="preview.src=img11.src" name="img11" src="PhotoResources/img11.jpg" alt="" />
-                        <img onclick="preview.src=img12.src" name="img12" src="PhotoResources/img12.jpg" alt="" />
-                        <img onclick="preview.src=img13.src" name="img13" src="PhotoResources/img13.jpg" alt="" />
-                    </div>
-                    <div class="preview" align="center">
-                        <img class="img-responsive" name="preview" src="PhotoResources/img1.jpg" alt="" />
+                <div id="divScheduleTable"class="table-responsive container">
+                    <div class="row bg-dark text-white">
+                        <div class="col-sm-4"> Event</div>
+                        <div class="col-sm-4"> Location</div>
+                        <div class="col-sm-4"> Date </div>
                     </div>
                 </div>
+              </div>
+            <div id="divPhotosContainer" style="display:none">
+                <div class="text-center"><h3><b>Photos</b></h3><br /></div>
+                <div class="gallery" align="center">
+                    <div class="thumbnails" id="divPhotos"></div>
+                    <div class="preview" align="center">
+                        <img class="img-responsive" id="preview" src="PhotoResources/logo-home3.png" alt="" />
+                    </div>
                     
-             </div>
+                </div>
+            </div>
             <div id="divSignInContainer" style="display:none">
                 <div class="text-center"><h3><b>Register</b></h3></div>
                 <div class="col-lg-12">
@@ -152,6 +146,6 @@
         <footer class="footer">
             <p class="bg-secondary text-white">Blue Ravens Handball</p>
         </footer>
-    </div> <!-- /container -->
+    </div>
 </body>
 </html>

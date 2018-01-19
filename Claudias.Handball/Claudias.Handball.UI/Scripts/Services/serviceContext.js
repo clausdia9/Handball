@@ -1,13 +1,14 @@
 ﻿var ServiceContext = function () {
-    var _playerService;
+    var _teamService;
     var _homeService;
     var _newsService;
     var _scheduleService;
-    this.PlayerService = function () {
-        if (!_playerService) {
-            _playerService = new PlayerService();
+    var _photosService;
+    this.TeamService = function () {
+        if (!_teamService) {
+            _teamService = new TeamService();
         }
-        return _playerService;
+        return _teamService;
     }
     this.HomeService = function () {
         if (!_homeService) {
@@ -26,5 +27,11 @@
             _scheduleService = new ScheduleService();
         }
         return _scheduleService;
+    }
+    this.PhotosService = function () {
+        if (!_photosService) {
+            _photosService = new PhotosService();
+        }
+        return _photosService;
     }
 }

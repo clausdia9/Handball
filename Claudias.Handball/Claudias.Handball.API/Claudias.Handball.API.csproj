@@ -8,12 +8,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F217922E-748A-453A-B9A2-12C4BB9EA9CB}</ProjectGuid>
+    <ProjectGuid>{B565F2A7-B57A-4773-9D76-388B26497450}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Claudias.Handball.UI</RootNamespace>
-    <AssemblyName>Claudias.Handball.UI</AssemblyName>
+    <RootNamespace>Claudias.Handball.API</RootNamespace>
+    <AssemblyName>Claudias.Handball.API</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -48,17 +48,7 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -68,12 +58,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Http.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -83,70 +67,36 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="PhotoResources\ardean.jpg" />
-    <Content Include="PhotoResources\bg_color.jpg" />
-    <Content Include="PhotoResources\dumanska.jpg" />
-    <Content Include="PhotoResources\gullden1.jpg" />
-    <Content Include="PhotoResources\img1.jpg" />
-    <Content Include="PhotoResources\img10.jpg" />
-    <Content Include="PhotoResources\img11.jpg" />
-    <Content Include="PhotoResources\img12.jpg" />
-    <Content Include="PhotoResources\img13.jpg" />
-    <Content Include="PhotoResources\img14.jpg" />
-    <Content Include="PhotoResources\img15.jpg" />
-    <Content Include="PhotoResources\img16.jpg" />
-    <Content Include="PhotoResources\img17.jpg" />
-    <Content Include="PhotoResources\18.jpg" />
-    <Content Include="PhotoResources\19.jpg" />
-    <Content Include="PhotoResources\img2.jpg" />
-    <Content Include="PhotoResources\20.jpg" />
-    <Content Include="PhotoResources\21.jpg" />
-    <Content Include="PhotoResources\22.jpg" />
-    <Content Include="PhotoResources\23.jpg" />
-    <Content Include="PhotoResources\3.png" />
-    <Content Include="PhotoResources\img4.jpg" />
-    <Content Include="PhotoResources\img5.jpg" />
-    <Content Include="PhotoResources\img6.jpg" />
-    <Content Include="PhotoResources\img7.jpg" />
-    <Content Include="PhotoResources\img8.jpg" />
-    <Content Include="PhotoResources\img9.jpg" />
-    <Content Include="PhotoResources\article1photo.jpg" />
-    <Content Include="PhotoResources\jumbotron_bg.jpeg" />
-    <Content Include="PhotoResources\logo-for-home.png" />
-    <Content Include="PhotoResources\logo-home3.png" />
-    <Content Include="PhotoResources\logo.png" />
-    <Content Include="PhotoResources\loke.jpg" />
-    <Content Include="PhotoResources\mork1.jpg" />
-    <Content Include="PhotoResources\neagu.jpg" />
-    <Content Include="PhotoResources\varzaru.jpg" />
-    <Content Include="Scripts\Controllers\homeArticlesController.js" />
-    <Content Include="Scripts\Controllers\homeController.js" />
-    <Content Include="Scripts\Controllers\homeJumbotronController.js" />
-    <Content Include="Scripts\Controllers\newsArticlesController.js" />
-    <Content Include="Scripts\Controllers\newsController.js" />
-    <Content Include="Scripts\Controllers\photoCardController.js" />
-    <Content Include="Scripts\Controllers\photosController.js" />
-    <Content Include="Scripts\Controllers\teamPlayerCardController.js" />
-    <Content Include="Scripts\Controllers\teamController.js" />
-    <Content Include="Scripts\Controllers\scheduleController.js" />
-    <Content Include="Scripts\Controllers\scheduleTableController.js" />
-    <Content Include="Scripts\External\bootstrap.bundle.js" />
-    <Content Include="Scripts\External\bootstrap.bundle.min.js" />
-    <Content Include="Scripts\External\jquery-3.2.1.min.js" />
-    <Content Include="Scripts\External\jquery.min.js" />
-    <Content Include="Scripts\Services\homeService.js" />
-    <Content Include="Scripts\Services\newsService.js" />
-    <Content Include="Scripts\Services\photosService.js" />
-    <Content Include="Scripts\Services\scheduleService.js" />
-    <Content Include="Scripts\Services\serviceContext.js" />
-    <Content Include="Scripts\Services\teamService.js" />
-    <Content Include="Style\bootstrap.css.map" />
-    <Content Include="Style\bootstrap.min.css.map" />
-    <Content Include="Scripts\External\bootstrap.bundle.js.map" />
-    <Content Include="Scripts\External\bootstrap.bundle.min.js.map" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Global.asax" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\Schedule.cs" />
+    <Compile Include="Controllers\TeamController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -155,18 +105,18 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="index.html" />
-    <Content Include="Scripts\appController.js" />
-    <Content Include="Scripts\menuController.js" />
-    <Content Include="Style\bootstrap.css" />
-    <Content Include="Style\bootstrap.min.css" />
-    <Content Include="Style\mystyles.css" />
-    <Content Include="Web.config" />
+    <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <ProjectReference Include="..\Claudias.Handball.Business\Claudias.Handball.Business.csproj">
+      <Project>{831bd7aa-d341-4661-95a7-e5c3d338cb1e}</Project>
+      <Name>Claudias.Handball.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Claudias.Handball.Models\Claudias.Handball.Models.csproj">
+      <Project>{3ff77c20-94e1-49d8-a2ce-4117136b71a5}</Project>
+      <Name>Claudias.Handball.Models</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -180,9 +130,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>64981</DevelopmentServerPort>
+          <DevelopmentServerPort>57820</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:64981/</IISUrl>
+          <IISUrl>http://localhost:57820/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
