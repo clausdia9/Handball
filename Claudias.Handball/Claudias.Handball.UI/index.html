@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="PhotoResources/logo-for-home.png" type="image/x-icon">
     <!-- App Scripts -->
+    <script src="Scripts/Services/serviceManager.js"></script>
     <script src="Scripts/Services/homeService.js"></script>
     <script src="Scripts/Services/teamService.js"></script>
     <script src="Scripts/Services/newsService.js"></script>
@@ -34,6 +35,7 @@
 </head>
 
 <body>
+    
     <div class="container">
         <header class="masthead">
             <h3 class="text-primary">Blue Ravens Handball</h3>
@@ -50,10 +52,14 @@
             </nav>
         </header>
         <main role="main">
+            <div id="progress" style="display:none; ">
+                <img src="PhotoResources/loading2.gif" style="width:100%;" />
+            </div>
             <div id="divHomeContainer" class="container clearfix" style="display:none">
-               <div id="divHomeJumbotron"></div>
-                <img src="PhotoResources/logo-home3.png" class="sticky img-responsive col-md-6 right" />
-                <div id="divHomeArticles"></div>
+                
+                    <div id="divHomeJumbotron"></div>
+                    <img src="PhotoResources/logo-home3.png" class="sticky img-responsive col-md-6 right" />
+                    <div id="divHomeArticles"></div>
                 
             </div>
             

@@ -115,6 +115,9 @@
     <Content Include="PhotoResources\img9.jpg" />
     <Content Include="PhotoResources\article1photo.jpg" />
     <Content Include="PhotoResources\jumbotron_bg.jpeg" />
+    <Content Include="PhotoResources\loading.gif" />
+    <Content Include="PhotoResources\loading1.gif" />
+    <Content Include="PhotoResources\loading2.gif" />
     <Content Include="PhotoResources\logo-for-home.png" />
     <Content Include="PhotoResources\logo-home3.png" />
     <Content Include="PhotoResources\logo.png" />
@@ -142,6 +145,7 @@
     <Content Include="Scripts\Services\photosService.js" />
     <Content Include="Scripts\Services\scheduleService.js" />
     <Content Include="Scripts\Services\serviceContext.js" />
+    <Content Include="Scripts\Services\serviceManager.js" />
     <Content Include="Scripts\Services\teamService.js" />
     <Content Include="Style\bootstrap.css.map" />
     <Content Include="Style\bootstrap.min.css.map" />

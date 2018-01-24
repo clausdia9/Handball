@@ -1,11 +1,17 @@
-﻿var NewsController = function (serviceContext) {
+﻿var NewsController = function (serviceContext, baseURL) {
 
     this.RenderPage = function () {
-        var allNews = JSON.parse(serviceContext.NewsService().ReadAll());
-       
-      for (var i = 0; i < allNews.length; i++) {
-            var newsArticlesController = new NewsArticleController("divNewsArticles", allNews[i]);
-            newsArticlesController.RenderNews();
-        }
+        $("#divNewsArticles").empty();
+        var variable = serviceContext.NewsService().ReadAll(baseURL + "/news").then(function (allNews) {
+            
+            $('#progress').hide();
+            for (var i = 0; i < JSON.parse(allNews).length; i++) {
+                var newsArticlesController = new NewsArticleController("divNewsArticles", JSON.parse(allNews)[i]);
+                newsArticlesController.RenderNews();
+            }
+        })
+            .catch(function () {
+                console.log("error");
+            });
     }
 }

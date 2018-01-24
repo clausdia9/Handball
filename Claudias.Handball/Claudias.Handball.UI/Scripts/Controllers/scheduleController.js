@@ -1,10 +1,17 @@
-﻿var ScheduleController = function (serviceContext) {
+﻿var ScheduleController = function (serviceContext, baseURL) {
 
     this.RenderPage = function () {
-        var allEvents = JSON.parse(serviceContext.ScheduleService().ReadAll());
-        for (var i = 0; i < allEvents.length; i++) {
-            var scheduleTableController = new ScheduleTableController("divScheduleTable", allEvents[i]);
-            scheduleTableController.RenderTable();
-        }
+        $("#divScheduleTable").empty();
+        var variable = serviceContext.ScheduleService().ReadAll(baseURL + "/schedule").then(function (allEvents) {
+
+            $('#progress').hide();
+            for (var i = 0; i < JSON.parse(allEvents).length; i++) {
+                var scheduleTableController = new ScheduleTableController("divScheduleTable", JSON.parse(allEvents)[i]);
+                scheduleTableController.RenderTable();
+            }
+        })
+            .catch(function () {
+                console.log("error");
+            });
     }
 }

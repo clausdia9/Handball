@@ -1,11 +1,9 @@
-﻿var ScheduleService = function () {
+﻿var ScheduleService = function (serviceManager) {
 
-        this.ReadAll = function () {
-            return $.ajax({
-                type: "GET",
-                url: 'http://localhost:57820/api/schedule',
-                async: false
-            }).responseText;
-        }
+    $('#progress').show();
+
+    this.ReadAll = function (url) {
+        return serviceManager.ReadAll(url, "GET");
+    }
 
 }

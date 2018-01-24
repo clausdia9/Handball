@@ -1,8 +1,10 @@
-﻿var TeamController = function (serviceContext) {
+﻿var TeamController = function (serviceContext, baseURL) {
 
     this.RenderPage = function () {
-        var variable = serviceContext.TeamService().ReadAll('http://localhost:57820/api/team').then(function (allCards) {
-            //console.log(allCards);
+        $("#divPlayerCards").empty();
+        var variable = serviceContext.TeamService().ReadAll(baseURL+"/team").then(function (allCards) {
+            
+            $('#progress').hide(); 
              for (var i = 0; i < JSON.parse(allCards).length; i++) {
                var teamPlayerCardController = new TeamPlayerCardController("divPlayerCards", JSON.parse(allCards)[i]);
                teamPlayerCardController.RenderCard();

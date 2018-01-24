@@ -1,16 +1,18 @@
-﻿var MenuController = function (serviceContext) {
+﻿var MenuController = function (serviceContext, baseURL) {
 
     var _self = this;
 
-    var _teamController = new TeamController(serviceContext);
+    var _teamController = new TeamController(serviceContext, baseURL);
 
-    var _homeController = new HomeController(serviceContext);
+    var _homeController = new HomeController(serviceContext, baseURL);
 
-    var _newsController = new NewsController(serviceContext);
+    var _newsController = new NewsController(serviceContext, baseURL);
 
-    var _scheduleController = new ScheduleController(serviceContext);
+    var _scheduleController = new ScheduleController(serviceContext, baseURL);
 
-    var _photosController = new PhotosController(serviceContext);
+    var _photosController = new PhotosController(serviceContext, baseURL);
+    
+
 
     var _menuElements = [
         {
@@ -93,10 +95,7 @@
             }
             else {
                 $(mainContainers[i]).show();
-            
-                    _menuElements[menuElementId].Controller.RenderPage();
-                   
-                
+                _menuElements[menuElementId].Controller.RenderPage();
             }
         }
         
