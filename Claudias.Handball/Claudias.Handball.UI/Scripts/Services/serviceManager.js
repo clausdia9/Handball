@@ -1,5 +1,5 @@
 ﻿var ServiceManager =function() {
-    this.ReadAll = function (url, type) {
+    this.ajax = function (url, type) {
         return new Promise(function (resolve, reject) {
             var xhr = new XMLHttpRequest();
             xhr.onload = function () {
